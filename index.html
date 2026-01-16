@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Onsera Health - Competitive Intelligence Dashboard v4.2</title>
+  <meta name="robots" content="noindex, nofollow">
+  <title>Onsera Health - Competitive Intelligence Dashboard v4.3</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
@@ -74,7 +75,7 @@
       display: inline-block; 
     }
     
-    /* Competitor Grid - 8 columns: Segment | Competitor | Status | Evidence | Source | Intel | Engage | Arrow */
+    /* Competitor Grid - 8 columns: Segment | Competitor | Status | Evidence | Intel | Engage | Source | Arrow */
     .competitor-grid {
       display: grid;
       grid-template-columns: 100px minmax(160px, 1fr) 90px 80px 70px 70px 70px 32px;
@@ -379,9 +380,9 @@
         <div className="text-left">Competitor</div>
         <div className="text-left">Status</div>
         <div className="text-left">Evidence</div>
-        <div className="text-left">Source</div>
         <div className="text-left">Intel</div>
         <div className="text-left">Engage</div>
+        <div className="text-left">Source</div>
         <div></div>
       </div>
     );
@@ -424,13 +425,13 @@
               </span>
             </div>
             <div className="hidden md:flex justify-start">
-              <PillarRating rating={sourceRating} color="bg-teal-500" />
-            </div>
-            <div className="hidden md:flex justify-start">
               <PillarRating rating={intelRating} color="bg-blue-500" />
             </div>
             <div className="hidden md:flex justify-start">
               <PillarRating rating={engageRating} color="bg-purple-500" />
+            </div>
+            <div className="hidden md:flex justify-start">
+              <PillarRating rating={sourceRating} color="bg-teal-500" />
             </div>
             <div className="text-gray-400 flex justify-end">
               <svg 

@@ -1,0 +1,5 @@
+# Robots.txt for Onsera Health CI Dashboard
+# Prevents search engines from indexing this site
+
+User-agent: *
+Disallow: /
