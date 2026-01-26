@@ -75,18 +75,6 @@
         .evidence-yellow { background-color: #854D0E; border-color: #FDE047; }
         .evidence-red { background-color: #991B1B; border-color: #FCA5A5; }
         
-        /* Stability squares */
-        .stability-square {
-            width: 10px;
-            height: 10px;
-            display: inline-block;
-        }
-        .stability-strong { background-color: #166534; }
-        .stability-stable { background-color: #5179F4; }
-        .stability-growing { background-color: #00817B; }
-        .stability-emerging { background-color: #854D0E; }
-        .stability-caution { background-color: #991B1B; }
-        
         /* Pillar rating bars */
         .pillar-bar {
             height: 6px;
@@ -98,6 +86,12 @@
             border-radius: 3px;
             background: linear-gradient(90deg, #5179F4, #1233CA);
         }
+        
+        /* Relevance indicators */
+        .relevance-critical { background-color: #FEE2E2; color: #991B1B; border-color: #FCA5A5; }
+        .relevance-high { background-color: #FEF3C7; color: #92400E; border-color: #FCD34D; }
+        .relevance-medium { background-color: #DBEAFE; color: #1E40AF; border-color: #93C5FD; }
+        .relevance-low { background-color: #F3F4F6; color: #4B5563; border-color: #D1D5DB; }
         
         /* Tooltips */
         .tooltip-container { position: relative; }
@@ -140,6 +134,10 @@
         /* Card animations */
         .card-expand { transition: all 0.3s ease; }
         .card-expand:hover { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); }
+        
+        /* Link hover */
+        .source-link { transition: color 0.15s ease; }
+        .source-link:hover { text-decoration: underline; }
     </style>
 </head>
 <body class="bg-onsera-off-white min-h-screen">
@@ -147,16 +145,45 @@
 
     <script type="text/babel">
         // ============================================================
-        // EMBEDDED DATA - v4.1.0 (January 20, 2026)
+        // EMBEDDED DATA - v4.3.0 (January 25, 2026)
         // ============================================================
         const EMBEDDED_DATA = {
   "metadata": {
-    "version": "4.1.0",
-    "lastUpdated": "2026-01-20",
-    "dataSource": "Comprehensive CI Research January 2026, Deep Research Update 2026-01-20, Competitor_Obesity_Market_Analysis, Evidence_Compendium, Pricing_Research",
-    "notes": "v4.1.0 - Added Twin Health, updated evidence grades from new research, added changelog tracking"
+    "version": "4.3.1",
+    "lastUpdated": "2026-01-25",
+    "dataSource": "JPM 2026, Comprehensive CI Research, Evidence Compendium, Pricing Research",
+    "notes": "v4.3.1 - Stability icons, encoding fixes (View-Only)"
   },
   "changelog": [
+    {
+      "version": "4.3.1",
+      "date": "2026-01-25",
+      "changes": [
+        { "type": "Updated", "field": "stabilityBadge", "note": "Replaced colored squares with Lucide icons (Shield, CheckCircle, TrendingUp, Sparkles, AlertTriangle)" },
+        { "type": "Updated", "field": "legend", "note": "Updated Stability Assessment legend to use icons matching badges" },
+        { "type": "Fixed", "field": "encoding", "note": "Fixed UTF-8 encoding issues (em-dashes, arrows) throughout" }
+      ]
+    },
+    {
+      "version": "4.3.0",
+      "date": "2026-01-25",
+      "changes": [
+        { "type": "Fixed", "field": "sourceUrl", "note": "Replaced 3 broken PitchBook URLs with public sources (CNBC, Eli Lilly IR, Viking IR)" },
+        { "type": "Added", "field": "filters", "note": "Market filter option in Weekly Digest to show industry-wide news" },
+        { "type": "Updated", "field": "digest", "note": "Separated conference summaries from Weekly Digest (moved to Conferences tab)" },
+        { "type": "Updated", "field": "upcomingConferences", "note": "Added 5 CEO-priority conferences: SALGBA, SHRM, SIIA, IFEBP, HLTH 2026" }
+      ]
+    },
+    {
+      "version": "4.2.0",
+      "date": "2026-01-25",
+      "changes": [
+        { "type": "Added", "field": "conferences", "note": "New Conferences tab with JPM 2026 and ObesityWeek 2025 coverage" },
+        { "type": "Added", "field": "digest", "note": "12 new entries from JPM 2026 and January market news" },
+        { "type": "Added", "field": "sourceUrl", "note": "Clickable source links on all digest entries" },
+        { "type": "Updated", "field": "marketSignals", "note": "January 2026 market context with oral GLP-1 launch, BALANCE model" }
+      ]
+    },
     {
       "version": "4.1.0",
       "date": "2026-01-20",
@@ -181,362 +208,677 @@
   ],
   "marketContext": {
     "keyDevelopments": [
-      "Oral Wegovy FDA approved Dec 22, 2025 - launched at 70,000+ pharmacies Jan 5, 2026",
-      "Trump Medicare GLP-1 pricing deal: $245/month injectable, $50 patient copay via CMS BALANCE Model",
-      "FDA compounding crackdown eliminated low-cost supply; Novo terminated Hims partnership",
-      "43% of large employers cover GLP-1s but 91% concerned about long-term costs (KFF 2025)",
-      "Direct-to-employer pharma models launching (LillyDirect, Waltz Health, NovoCare Pharmacy)",
-      "Prime Therapeutics JMCP study: No medical cost offsets in first 2 years of GLP-1 treatment"
+      "Oral Wegovy FDA approved Dec 22, 2025 - launched at 70,000+ pharmacies Jan 6, 2026",
+      "CMS BALANCE Model: Medicare Part D demo July 2026, full Medicaid May 2026",
+      "JPM 2026: GLP-1 market entering 'Year of the Pill' - oral formulations dominate narrative",
+      "Digital health funding hit $14.2B in 2025 (+35% YoY), AI-enabled companies captured 54%",
+      "FDA compounding enforcement expected to intensify as shortages resolve",
+      "TrumpRx platform sets GLP-1 pricing at $245/month with $50 Medicare copay"
     ],
     "onseraAdvantages": [
       "Externally validated outcomes methodology",
       "24-month structured care journey with deprescribing pathways",
       "Actuarial-grade analytics and risk stratification",
       "Health plan integration with formulary optimization",
-      "Population health approach vs. individual consumer model"
+      "Population health approach vs. individual consumer model",
+      "CMS BALANCE model validates integrated care approach"
     ]
+  },
+  "digest": [
+    {
+      "id": "digest-2026-01-25-002",
+      "date": "2026-01-25",
+      "competitor": "Market",
+      "headline": "Digital Health Funding Hit $14.2B in 2025, AI Takes Lion's Share",
+      "category": "Channel/Coverage",
+      "priority": "High",
+      "summary": "Rock Health reports 2025 digital health funding reached $14.2B (+35% YoY), highest since 2022. AI-enabled startups captured 54% of total funding with 19% larger rounds. 26 megadeals (>$100M) and 15 new unicorns. Growing concentration with a16z/GC-backed companies.",
+      "sourceUrl": "https://rockhealth.com/insights/leading-innovation-at-the-intersection-of-tech-and-care-inside-rock-health-and-google-clouds-jpm-week-dialogue/",
+      "sourceName": "Rock Health / Google Cloud JPM Dialogue",
+      "onseraImplications": "Consider noting that sustainable unit economics are now 'table stakes' per Rock Health. Sales teams may want to emphasize Onsera's evidence-backed outcomes vs. growth-at-all-costs competitors.",
+      "confidence": "Confirmed"
+    },
+    {
+      "id": "digest-2026-01-25-003",
+      "date": "2026-01-25",
+      "competitor": "Market",
+      "headline": "Anthropic Launches Claude for Healthcare at JPM 2026",
+      "category": "Competitor",
+      "priority": "High",
+      "summary": "Anthropic announced Claude for Healthcare, a HIPAA-ready enterprise AI suite with native integrations to CMS Medicare Coverage Database, PubMed, NPI Registry, and ICD-10. Elation Health integrated Claude into its EHR for chart summaries.",
+      "sourceUrl": "https://www.advisory.com/daily-briefing/2026/01/20/jpm-health",
+      "sourceName": "Advisory Board Daily Briefing",
+      "onseraImplications": "Consider monitoring how healthcare-specific AI tools may create new competitive dynamics. Sales teams may want to emphasize Onsera's proprietary AI capabilities and clinical integration.",
+      "confidence": "Confirmed"
+    },
+    {
+      "id": "digest-2026-01-25-004",
+      "date": "2026-01-25",
+      "competitor": "Market",
+      "headline": "CMS Announces BALANCE Model for Medicare GLP-1 Coverage",
+      "category": "Regulatory",
+      "priority": "Critical",
+      "summary": "CMS launched the BALANCE Model to expand Medicare/Medicaid GLP-1 access. Medicare Part D demo starts July 2026 with $50/month beneficiary copay; full BALANCE model launches Medicaid May 2026. All beneficiaries must access a lifestyle support program.",
+      "sourceUrl": "https://www.cms.gov/priorities/innovation/innovation-models/balance",
+      "sourceName": "CMS Innovation Center",
+      "onseraImplications": "Consider emphasizing that BALANCE model requires lifestyle support alongside GLP-1s-directly validating Onsera's integrated approach. CMS is mandating what Onsera already delivers.",
+      "confidence": "Confirmed"
+    },
+    {
+      "id": "digest-2026-01-25-005",
+      "date": "2026-01-25",
+      "competitor": "Market",
+      "headline": "Wegovy Pill Launches at $149-$299/month, Available via Telehealth",
+      "category": "Drug/Science",
+      "priority": "Critical",
+      "summary": "Novo Nordisk rolled out oral Wegovy January 6, 2026-first FDA-approved GLP-1 pill for weight loss. Available at 70,000+ pharmacies including CVS, Costco, and telehealth platforms (Ro, LifeMD, WeightWatchers). Pricing: $149/month starter, $299/month highest dose.",
+      "sourceUrl": "https://www.advisory.com/daily-briefing/2026/01/06/wegovy-pill",
+      "sourceName": "Advisory Board / Washington Post",
+      "onseraImplications": "Consider noting that oral GLP-1s expand market but intensify D2C competition. Sales teams may want to emphasize that pill availability increases need for clinical oversight and off-ramp planning.",
+      "confidence": "Confirmed"
+    },
+    {
+      "id": "digest-2026-01-25-006",
+      "date": "2026-01-25",
+      "competitor": "Omada Health",
+      "headline": "Omada Reports 51-52% Revenue Growth, 886K Members",
+      "category": "Competitor",
+      "priority": "High",
+      "summary": "Omada Health announced preliminary FY2025 revenue of $256-258M (+51-52% YoY), Q4 revenue $72-74M (+50-54% YoY). Total members reached 886,000 (+55% YoY). At JPM 2026, emphasized GLP-1 companion programs and AI integration.",
+      "sourceUrl": "https://www.globenewswire.com/news-release/2026/01/12/3217009/0/en/Omada-Health-Reports-Preliminary-Unaudited-Revenue-for-the-Fourth-Quarter-and-Fiscal-Year-2025.html",
+      "sourceName": "GlobeNewswire / Omada IR",
+      "onseraImplications": "Consider noting Omada's strong growth validates market demand. Omada remains coaching-first without prescribing capabilities-dependent on PBM/PCP for GLP-1 policy. Evidence grade remains YELLOW.",
+      "confidence": "Confirmed"
+    },
+    {
+      "id": "digest-2026-01-25-007",
+      "date": "2026-01-25",
+      "competitor": "Market",
+      "headline": "Eli Lilly-NVIDIA Announce $1B AI Drug Discovery Lab",
+      "category": "Drug/Science",
+      "priority": "Medium",
+      "summary": "Eli Lilly and NVIDIA announced a $1B Co-Innovation AI Lab in South San Francisco at JPM 2026. Lilly also highlighted 13-site manufacturing build-out and LillyDirect serving ~1M patients.",
+      "sourceUrl": "https://investor.lilly.com/news-releases/news-release-details/nvidia-and-lilly-announce-co-innovation-ai-lab-reinvent-drug",
+      "sourceName": "Eli Lilly Investor Relations",
+      "onseraImplications": "Consider monitoring Lilly's DTC expansion (LillyDirect) as potential competitive pressure. Manufacturer DTC plays focus on drug access, not integrated care outcomes.",
+      "confidence": "Confirmed"
+    },
+    {
+      "id": "digest-2026-01-25-009",
+      "date": "2026-01-25",
+      "competitor": "Hims & Hers",
+      "headline": "Hims & Hers Expands GLP-1 Access, UK Launch",
+      "category": "Competitor",
+      "priority": "Medium",
+      "summary": "Hims & Hers continues D2C GLP-1 expansion with Wegovy partnership via NovoCare. Launched UK Weight Loss Programme in late 2025. Compounded semaglutide still offered at $165/month despite FDA concerns.",
+      "sourceUrl": "https://telehealth.org/news/hims-hers-expands-telehealth-weight-loss-launches-hers-platform-in-the-uk/",
+      "sourceName": "Telehealth.org",
+      "onseraImplications": "Consider noting D2C players face regulatory risk around compounding as FDA shortage exemptions end. Sales teams may want to emphasize Onsera's clinically-governed approach.",
+      "confidence": "Confirmed"
+    },
+    {
+      "id": "digest-2026-01-25-011",
+      "date": "2026-01-25",
+      "competitor": "Market",
+      "headline": "Viking Therapeutics VK2735 Shows Differentiated PK Profile",
+      "category": "Drug/Science",
+      "priority": "Medium",
+      "summary": "At JPM 2026, Viking Therapeutics presented Phase 2 results for dual GLP-1/GIP agonist VK2735 showing potentially differentiated pharmacokinetics vs. tirzepatide. Remains prime M&A candidate.",
+      "sourceUrl": "https://ir.vikingtherapeutics.com/2026-01-12-Viking-Therapeutics-Announces-Publication-of-Results-from-Phase-2-VENTURE-Trial-of-Dual-GLP-1-GIP-Receptor-Agonist-VK2735-in-the-Journal-Obesity",
+      "sourceName": "Viking Therapeutics IR",
+      "onseraImplications": "Consider monitoring next-gen GLP-1 pipeline as it may reshape competitive landscape 2027+. These are still years from commercial availability.",
+      "confidence": "Confirmed"
+    },
+    {
+      "id": "digest-2026-01-20-001",
+      "date": "2026-01-20",
+      "competitor": "CVS Caremark",
+      "headline": "CVS Caremark Expands Formulary Management Capabilities",
+      "category": "Competitor",
+      "priority": "High",
+      "summary": "CVS Caremark continues to expand its Metabolic Health solution with enhanced formulary management and utilization management guardrails. PBM-integrated approach positions them for BALANCE model participation.",
+      "sourceUrl": "https://www.cvshealth.com/news/pharmacy/metabolic-health",
+      "sourceName": "CVS Health Newsroom",
+      "onseraImplications": "Consider emphasizing Onsera's clinical depth vs. PBM formulary-first approach. Sales teams may want to highlight potential PBM conflict of interest.",
+      "confidence": "Likely"
+    },
+    {
+      "id": "digest-2026-01-18-001",
+      "date": "2026-01-18",
+      "competitor": "Virta Health",
+      "headline": "Virta Emphasizes GLP-1 Deprescription Outcomes at JPM",
+      "category": "Competitor",
+      "priority": "High",
+      "summary": "Virta Health presented at JPM 2026 highlighting their ketogenic diet approach for GLP-1 deprescription. Referenced 2024 study (n=308) showing similar outcomes after discontinuation.",
+      "sourceUrl": "https://www.virtahealth.com/research",
+      "sourceName": "Virta Health Research",
+      "onseraImplications": "Consider asking: 'Is this ITT or completer analysis? What was the dropout rate?' Evidence grade remains YELLOW due to selection bias concerns.",
+      "confidence": "Confirmed"
+    },
+    {
+      "id": "digest-2026-01-15-001",
+      "date": "2026-01-15",
+      "competitor": "Calibrate",
+      "headline": "Calibrate Continues B2B Expansion with Health Plan Focus",
+      "category": "Competitor",
+      "priority": "Medium",
+      "summary": "Calibrate continues pivot from D2C to B2B channel, emphasizing health plan partnerships. Claims 16% weight loss at 12 months (n=14,000+), 18% at 24 months (n=1,100+).",
+      "sourceUrl": "https://www.calibrate.com/research",
+      "sourceName": "Calibrate Research",
+      "onseraImplications": "Consider noting Calibrate's D2C roots vs. Onsera's health plan-first model. Evidence grade remains RED (internal analysis, no peer review).",
+      "confidence": "Confirmed"
+    },
+    {
+      "id": "digest-2026-01-10-001",
+      "date": "2026-01-10",
+      "competitor": "Market",
+      "headline": "Employer GLP-1 Coverage at Crossroads for 2026",
+      "category": "Channel/Coverage",
+      "priority": "High",
+      "summary": "Mercer survey shows 77% of large employers say managing GLP-1 costs is extremely/very important. 44% of employers with 500+ employees covered weight loss meds in 2024. Only 1 in 12 members remain on GLP-1 after 3 years.",
+      "sourceUrl": "https://www.mercer.com/en-us/insights/us-health-news/glp-1-considerations-for-2026-your-questions-answered/",
+      "sourceName": "Mercer",
+      "onseraImplications": "Consider emphasizing Onsera's focus on retention and sustainable outcomes. 3-year persistence data validates need for integrated support programs.",
+      "confidence": "Confirmed"
+    },
+    {
+      "id": "digest-2026-01-08-001",
+      "date": "2026-01-08",
+      "competitor": "Market",
+      "headline": "FDA Compounding Enforcement Expected to Intensify",
+      "category": "Regulatory",
+      "priority": "High",
+      "summary": "With Wegovy and Zepbound shortages resolved, FDA can now take action against companies selling copycat GLP-1 versions. Some telehealth vendors already shifting away from compounded products.",
+      "sourceUrl": "https://www.mercer.com/en-us/insights/us-health-news/glp-1-considerations-for-2026-your-questions-answered/",
+      "sourceName": "Mercer / FDA",
+      "onseraImplications": "Consider noting regulatory risk for D2C competitors relying on compounded products. Sales teams may want to emphasize Onsera's focus on FDA-approved medications.",
+      "confidence": "Confirmed"
+    },
+    {
+      "id": "digest-2026-01-05-001",
+      "date": "2026-01-05",
+      "competitor": "Market",
+      "headline": "IQVIA: 2026 Is Year of Acceleration for Obesity Market",
+      "category": "Drug/Science",
+      "priority": "Medium",
+      "summary": "IQVIA reports 2026 will see oral GLP-1 debuts, first LOE for GLP-1 receptor agonist, and landmark Medicare coverage. Real-world evidence increasingly valued by payers.",
+      "sourceUrl": "https://www.iqvia.com/locations/emea/blogs/2024/01/outlook-for-obesity-in-2026",
+      "sourceName": "IQVIA",
+      "onseraImplications": "Consider noting that real-world evidence is becoming critical differentiator. Sales teams may want to emphasize Onsera's externally validated outcomes.",
+      "confidence": "Confirmed"
+    },
+    {
+      "id": "digest-2026-01-03-001",
+      "date": "2026-01-03",
+      "competitor": "Market",
+      "headline": "TrumpRx Platform Sets GLP-1 Pricing at $245/month",
+      "category": "Regulatory",
+      "priority": "High",
+      "summary": "Administration's TrumpRx platform offers brand-name GLP-1s at $245/month with $50 copay cap for Medicare beneficiaries. Uses most-favored nation pricing tied to international benchmarks.",
+      "sourceUrl": "https://www.mwe.com/insights/glp-1-coverage-expansion-under-medicare-what-digital-health-companies-need-to-know/",
+      "sourceName": "McDermott Will & Emery",
+      "onseraImplications": "Consider monitoring how government pricing may erode D2C telehealth pricing advantage. Price parity shifts competition to care quality and outcomes.",
+      "confidence": "Confirmed"
+    },
+    {
+      "id": "digest-2025-12-22-001",
+      "date": "2025-12-22",
+      "competitor": "Market",
+      "headline": "FDA Approves Wegovy Pill-First Oral GLP-1 for Weight Loss",
+      "category": "Drug/Science",
+      "priority": "Critical",
+      "summary": "FDA approved Novo Nordisk's Wegovy pill (oral semaglutide) December 22, 2025-first and only oral GLP-1 for weight loss in adults. Based on OASIS 4 trial (n=307, 64 weeks).",
+      "sourceUrl": "https://www.prnewswire.com/news-releases/fda-approves-novo-nordisks-wegovy-pill-the-first-and-only-oral-glp-1-for-weight-loss-in-adults-302648344.html",
+      "sourceName": "PR Newswire / Novo Nordisk",
+      "onseraImplications": "Consider emphasizing that oral GLP-1s expand market access but increase need for clinical oversight and retention support.",
+      "confidence": "Confirmed"
+    },
+    {
+      "id": "digest-2025-12-20-001",
+      "date": "2025-12-20",
+      "competitor": "Twin Health",
+      "headline": "Twin Health Continues Whole Body Digital Twin Positioning",
+      "category": "Competitor",
+      "priority": "Medium",
+      "summary": "Twin Health maintains focus on 'Whole Body Digital Twin' technology for metabolic health. Claims AI-powered precision nutrition approach. Limited public outcomes data available.",
+      "sourceUrl": "https://www.twinhealth.com",
+      "sourceName": "Twin Health Website",
+      "onseraImplications": "Consider monitoring Twin Health's enterprise traction. Sales teams may want to note lack of peer-reviewed outcomes validation.",
+      "confidence": "Likely"
+    },
+    {
+      "id": "digest-2025-12-15-001",
+      "date": "2025-12-15",
+      "competitor": "Teladoc/Livongo",
+      "headline": "Teladoc Chronic Care Continues Integration Challenges",
+      "category": "Competitor",
+      "priority": "Low",
+      "summary": "Teladoc continues to navigate Livongo integration and chronic care positioning. Multi-condition platform approach but facing execution challenges in weight management.",
+      "sourceUrl": "https://www.teladochealth.com",
+      "sourceName": "Teladoc Health",
+      "onseraImplications": "Consider noting Teladoc's breadth vs. Onsera's depth in metabolic health. Sales teams may want to emphasize focused expertise vs. generalist platform.",
+      "confidence": "Likely"
+    }
+  ],
+  "conferences": [
+    {
+      "id": "conf-jpm-2026",
+      "name": "J.P. Morgan Healthcare Conference 2026",
+      "shortName": "JPM 2026",
+      "dates": "January 12-15, 2026",
+      "location": "San Francisco, CA",
+      "type": "Investor/Industry",
+      "attendees": "8,000+",
+      "companies": "500+",
+      "keyTakeaways": [
+        {
+          "theme": "GLP-1: Year of the Pill",
+          "summary": "Market converging around oral GLP-1s. Novo launched Wegovy pill; Lilly orforglipron expected Q2 2026. Incumbents emphasizing DTC channels and manufacturing scale over clinical differentiation.",
+          "onseraRelevance": "High",
+          "source": "CNBC / Fierce Pharma"
+        },
+        {
+          "theme": "AI Moves to Operational ROI",
+          "summary": "AI narrative shifted from hype to demonstrated value. Standing-room-only sessions for ModMed and Abridge (ambient documentation). Key wins: scribing, RCM, data labeling-not clinical replacement.",
+          "onseraRelevance": "Medium",
+          "source": "Advisory Board / Rock Health"
+        },
+        {
+          "theme": "Digital Health Funding Concentrated",
+          "summary": "$14.2B funding in 2025 (+35% YoY). AI-enabled startups captured 54% of total. Growing concentration with a16z/GC-backed companies at 28-112% valuation premiums. 'Sustainable unit economics now table stakes.'",
+          "onseraRelevance": "High",
+          "source": "Rock Health"
+        },
+        {
+          "theme": "CMS Engagement & BALANCE Model",
+          "summary": "Administrator Oz emphasized quality/access, not just cost. BALANCE model announced for Medicare/Medicaid GLP-1 coverage with mandatory lifestyle support-validating integrated care approach.",
+          "onseraRelevance": "Critical",
+          "source": "CMS / Advisory Board"
+        },
+        {
+          "theme": "Health System Stability Returns",
+          "summary": "Nonprofit hospitals reporting pre-pandemic margins, solid cash positions. Focus on operational efficiency, ASC expansion, and renewed interest in PPM acquisitions.",
+          "onseraRelevance": "Medium",
+          "source": "Advisory Board"
+        },
+        {
+          "theme": "Claude for Healthcare Launch",
+          "summary": "Anthropic announced HIPAA-ready AI suite with CMS, PubMed, NPI, ICD-10 integrations. Elation Health embedded Claude in EHR. Signals enterprise AI adoption acceleration.",
+          "onseraRelevance": "Low",
+          "source": "Fierce Healthcare"
+        }
+      ],
+      "competitorPresences": [
+        { "name": "Omada Health", "presented": true, "notes": "Highlighted 51-52% revenue growth, 886K members, GLP-1 companion programs" },
+        { "name": "Virta Health", "presented": true, "notes": "Emphasized ketogenic diet GLP-1 deprescription approach" },
+        { "name": "Eli Lilly", "presented": true, "notes": "$1B NVIDIA AI Lab, LillyDirect serving ~1M patients, orforglipron Q2 2026" },
+        { "name": "Novo Nordisk", "presented": true, "notes": "Wegovy pill launch, NovoCare Pharmacy expansion" },
+        { "name": "ModMed", "presented": true, "notes": "Standing-room-only; $750M+ ARR, AI-powered practice agents" },
+        { "name": "Abridge", "presented": true, "notes": "$5.3B valuation, 200+ health system partners, 350K physicians" }
+      ],
+      "sourceUrls": [
+        "https://www.cnbc.com/2026/01/10/2026-is-the-year-of-obesity-pills-from-novo-nordisk-eli-lilly-.html",
+        "https://www.advisory.com/daily-briefing/2026/01/20/jpm-health",
+        "https://rockhealth.com/insights/leading-innovation-at-the-intersection-of-tech-and-care-inside-rock-health-and-google-clouds-jpm-week-dialogue/"
+      ]
+    },
+    {
+      "id": "conf-obesityweek-2025",
+      "name": "ObesityWeek 2025",
+      "shortName": "ObesityWeek 2025",
+      "dates": "October 2025",
+      "location": "San Antonio, TX",
+      "type": "Clinical/Scientific",
+      "attendees": "4,000+",
+      "companies": "200+",
+      "keyTakeaways": [
+        {
+          "theme": "GLP-1 Pipeline Expansion",
+          "summary": "Multiple next-gen compounds presented including oral formulations and combination therapies targeting higher efficacy ceilings.",
+          "onseraRelevance": "Medium",
+          "source": "ObesityWeek Program"
+        },
+        {
+          "theme": "Real-World Evidence Growing",
+          "summary": "Increasing focus on long-term maintenance and off-ramp strategies as more patients complete initial treatment phases.",
+          "onseraRelevance": "High",
+          "source": "Clinical Sessions"
+        }
+      ],
+      "competitorPresences": [
+        { "name": "Virta Health", "presented": true, "notes": "Deprescription data presentation" },
+        { "name": "Calibrate", "presented": true, "notes": "Weight loss maintenance outcomes" }
+      ],
+      "sourceUrls": [
+        "https://obesityweek.org"
+      ]
+    }
+  ],
+  "upcomingConferences": [
+    {
+      "name": "SALGBA National Conference",
+      "dates": "May 4-7, 2026",
+      "location": "Providence, RI",
+      "relevance": "Public sector employers — key target for government/municipal plans"
+    },
+    {
+      "name": "SHRM Annual Conference",
+      "dates": "June 16-19, 2026",
+      "location": "TBD",
+      "relevance": "Great match — HR decision-makers, benefits leaders, workforce health"
+    },
+    {
+      "name": "SIIA National Conference",
+      "dates": "October 11-13, 2026",
+      "location": "TBD",
+      "relevance": "Direct TPA/self-funded access — key channel for employer benefits"
+    },
+    {
+      "name": "IFEBP Annual Conference",
+      "dates": "October 25-28, 2026",
+      "location": "New Orleans, LA",
+      "relevance": "Multiemployer & public sector — Taft-Hartley funds, benefits professionals"
+    },
+    {
+      "name": "HLTH 2026",
+      "dates": "November 15-18, 2026",
+      "location": "Las Vegas, NV",
+      "relevance": "Employer & Workforce Health track — digital health showcase, competitor announcements"
+    }
+  ],
+  "marketSignals": {
+    "summary": "January 2026 marks inflection point: oral GLP-1s launch, Medicare coverage expands, AI moves from hype to ROI, and D2C players face compounding enforcement.",
+    "keyThemes": [
+      "Oral GLP-1s expand market access but don't solve retention/off-ramp challenge",
+      "CMS BALANCE model mandates lifestyle support-validates integrated care",
+      "Sustainable unit economics now 'table stakes' for digital health",
+      "AI value proven in operational efficiency, not clinical replacement",
+      "D2C compounding faces regulatory pressure as shortages resolve"
+    ],
+    "onseraPositioning": "Onsera's evidence-backed, clinically integrated approach increasingly validated by market trends."
   },
   "competitors": [
     {
-      "id": "cvs-healthspire",
-      "name": "CVS Caremark / Healthspire",
+      "id": "cvs-caremark",
+      "name": "CVS Caremark (Metabolic Health)",
       "segment": "PBM-Aligned",
-      "businessModel": "B2B",
-      "primaryChannel": "Employer",
-      "lastUpdated": "2026-01-20",
-      "coreProduct": "Integrated PBM + lifestyle program with Wegovy as preferred GLP-1 (exclusive Novo partnership). Enhanced GLP-1 Care Track via Omada partnership. 3.5M+ eligible members.",
+      "businessModel": "B2B2C",
+      "primaryChannel": "Health Plan",
+      "lastUpdated": "2026-01-25",
+      "stability": "STRONG",
+      "coreProduct": "Integrated metabolic health solution bundling PBM formulary management, utilization controls, and care navigation within existing CVS pharmacy infrastructure.",
       "pillars": {
-        "source": { "rating": 5, "notes": "Full formulary control as PBM. Wegovy preferred; Zepbound excluded since July 2025." },
-        "intelligence": { "rating": 3, "notes": "Internal pilot data (265K covered lives). Up to 5:1 ROI claimed but not peer-reviewed." },
-        "engage": { "rating": 3, "notes": "Health Optimizer app with FDA-cleared AI; RDs for 1:1 virtual sessions; connected scale." }
+        "source": { "rating": 5, "notes": "Direct formulary control, rebate leverage, PBM integration" },
+        "intelligence": { "rating": 2, "notes": "Claims data but limited clinical outcomes validation" },
+        "engage": { "rating": 2, "notes": "Pharmacy touchpoints but not care-focused engagement" }
       },
       "pricing": {
         "unitType": "PMPM",
-        "structure": "$9.23 PMPM savings vs peer group; 26% less on GLP-1 medications",
-        "tactics": ["Formulary leverage", "Manufacturer exclusives", "UM controls"],
-        "estimatedCost": "No specific PEPM disclosed",
-        "confidence": "Likely"
+        "structure": "Bundled with PBM services; incremental add-on",
+        "confidence": "Inferred"
       },
       "outcomes": {
-        "metricsReported": ["15%+ avg weight loss", "13x improvement for struggling members", "92% satisfaction at 6mo"],
-        "trendGuarantee": true,
+        "metricsReported": ["Formulary adherence", "Cost per member", "Utilization rates"],
         "evidenceGrade": "RED",
-        "methodologicalFlags": ["Internal pilot data only", "Results extrapolated from 265K pilot", "Not peer-reviewed"]
+        "methodologicalFlags": ["No published clinical outcomes", "PBM conflict of interest"],
+        "dataAvailability": "Limited"
       },
-      "stabilityAssessment": "STRONG",
       "theySayWeSay": [
-        {"theySay": "We deliver 5:1 ROI with Wegovy preferred formulary", "weSay": "Consider asking: Is this realized claims or projections? What's the methodology?"},
-        {"theySay": "Our Omada partnership adds behavioral support", "weSay": "Consider noting Onsera's integrated clinical-behavioral model vs. bolted-on partnerships"}
+        { "theySay": "We control the formulary and can guarantee savings", "weSay": "Consider asking: What are your clinical outcome metrics? How do you measure success beyond cost?" },
+        { "theySay": "Seamless integration with existing benefits", "weSay": "Consider noting that integration doesn't equal outcomes-what's the evidence for weight maintenance?" }
       ],
-      "whenTheyWin": "Existing CVS Caremark client; wants turnkey PBM integration; CFO focus on Rx trend",
-      "whenOnseraWins": "Needs clinical independence; outcomes over formulary control; health plan integration beyond PBM"
+      "whenOnseraWins": "Buyer prioritizes clinical outcomes over formulary convenience; wants independent validation",
+      "whenTheyWin": "Buyer wants turnkey PBM add-on with minimal implementation complexity"
     },
     {
       "id": "optum-rx",
       "name": "Optum Rx Weight Engage",
       "segment": "PBM-Aligned",
-      "businessModel": "B2B",
-      "primaryChannel": "Employer",
-      "lastUpdated": "2026-01-20",
-      "coreProduct": "PBM weight management with Wegovy on Premium Formulary (CV risk only). Provider Guidance and Consumer-Driven models available. 60M+ members served.",
+      "businessModel": "B2B2C",
+      "primaryChannel": "Health Plan",
+      "lastUpdated": "2026-01-25",
+      "stability": "STRONG",
+      "coreProduct": "UHG-integrated weight management combining PBM formulary tools with Optum's care delivery capabilities and UHC network.",
       "pillars": {
-        "source": { "rating": 5, "notes": "Full formulary control. Wegovy for CV risk only on standard formulary." },
-        "intelligence": { "rating": 2, "notes": "No proprietary outcomes published; relies on clinical trial references only." },
-        "engage": { "rating": 3, "notes": "Two models: Provider Guidance (specialists) and Consumer-Driven (coaching + digital)." }
+        "source": { "rating": 5, "notes": "UHG ecosystem, PBM leverage, network depth" },
+        "intelligence": { "rating": 3, "notes": "Optum Labs analytics but limited public validation" },
+        "engage": { "rating": 3, "notes": "Care delivery integration but variable execution" }
       },
       "pricing": {
         "unitType": "PMPM",
-        "structure": "50% reduction in trend growth claimed for key strategies",
-        "tactics": ["System edits", "Stricter refill thresholds", "Quantity limits"],
-        "estimatedCost": "No public PEPM disclosed",
-        "confidence": "Unknown"
+        "structure": "Bundled or standalone; pricing varies by UHC relationship",
+        "confidence": "Inferred"
       },
       "outcomes": {
-        "metricsReported": ["15% for Wegovy", "21% for Zepbound"],
-        "trendGuarantee": false,
-        "evidenceGrade": "RED",
-        "methodologicalFlags": ["External trial data only", "No real-world program outcomes published"]
-      },
-      "stabilityAssessment": "STRONG",
-      "theySayWeSay": [
-        {"theySay": "We achieve 50% trend reduction with our UM strategies", "weSay": "Consider asking: Trend reduction vs what baseline? Does this equal health outcomes?"},
-        {"theySay": "We require Calibrate enrollment for some clients", "weSay": "Consider noting: Onsera provides integrated solution without third-party dependencies"}
-      ],
-      "whenTheyWin": "UnitedHealth ecosystem; wants PBM-integrated approach; UM focus",
-      "whenOnseraWins": "Needs outcomes validation; wants clinical independence; population health analytics"
-    },
-    {
-      "id": "evernorth-encirclerx",
-      "name": "Evernorth / EncircleRx",
-      "segment": "PBM-Aligned",
-      "businessModel": "B2B",
-      "primaryChannel": "Employer",
-      "lastUpdated": "2026-01-20",
-      "coreProduct": "11M+ enrolled lives with $400M claimed savings since 2024. $200/month patient copay cap via direct Lilly/Novo negotiations. Omada included at no cost. 'Cardiodiabesity' positioning.",
-      "pillars": {
-        "source": { "rating": 5, "notes": "Direct manufacturer negotiations. $200/month copay cap. EnGuide Pharmacy for GLP-1 delivery." },
-        "intelligence": { "rating": 3, "notes": "4.8% BMI decrease; 80% engagement. Internal + Omada partner data. 67% 12-month persistence via Omada." },
-        "engage": { "rating": 4, "notes": "Requires Omada enrollment. EnReachRx for dose optimization and navigation." }
-      },
-      "pricing": {
-        "unitType": "PMPM",
-        "structure": "15% YoY cost cap or 3:1 savings guarantee. Omada at no additional cost.",
-        "tactics": ["Direct manufacturer contracts", "Cost caps", "Guarantees"],
-        "estimatedCost": "$200/month max patient copay",
-        "confidence": "Confirmed"
-      },
-      "outcomes": {
-        "metricsReported": ["4.8% BMI decrease", "80% engagement", "1.7x weight loss high vs low engagement", "67% 12-month persistence"],
-        "trendGuarantee": true,
+        "metricsReported": ["Engagement rates", "Pharmacy adherence", "Care transitions"],
         "evidenceGrade": "YELLOW",
-        "methodologicalFlags": ["Internal + partner data", "Omada publications are general program, not EncircleRx-specific"]
+        "methodologicalFlags": ["Internal validation only", "Selection into UHG population"],
+        "dataAvailability": "Limited"
       },
-      "stabilityAssessment": "STRONG",
       "theySayWeSay": [
-        {"theySay": "Industry-first financial guarantee with 3:1 savings", "weSay": "Consider asking: Based on what methodology? Realized or projected?"},
-        {"theySay": "Cardiodiabesity approach addresses interconnected conditions", "weSay": "Consider noting: Onsera's cardiometabolic model has similar scope with deeper clinical integration"}
+        { "theySay": "We have the largest integrated health system", "weSay": "Consider asking: What's the evidence grade for your outcomes claims? Are these ITT or completer analyses?" }
       ],
-      "whenTheyWin": "Cigna/Express Scripts ecosystem; wants guarantees; comfortable with PBM model",
-      "whenOnseraWins": "Needs outcomes validation; wants clinical independence; concerned about PBM conflicts"
+      "whenOnseraWins": "Buyer wants independence from UHG; prioritizes externally validated outcomes",
+      "whenTheyWin": "Buyer already in UHG ecosystem; wants single-vendor simplicity"
     },
     {
-      "id": "eversana-waltz",
-      "name": "EVERSANA + Waltz Health",
+      "id": "evernorth",
+      "name": "Evernorth EncircleRx",
       "segment": "PBM-Aligned",
-      "businessModel": "B2B",
-      "primaryChannel": "Employer",
-      "lastUpdated": "2026-01-20",
-      "coreProduct": "Direct-to-employer GLP-1 access launched Jan 2026. Transparent pricing bypassing PBMs. Partners with BOTH Eli Lilly AND Novo Nordisk. Integrated partners: Noom, 9amHealth, Ilant Health, Goodpath.",
+      "businessModel": "B2B2C",
+      "primaryChannel": "Health Plan",
+      "lastUpdated": "2026-01-25",
+      "stability": "STRONG",
+      "coreProduct": "Cigna/ESI weight management solution with pharmacy benefit integration and care coordination features.",
       "pillars": {
-        "source": { "rating": 5, "notes": "Direct manufacturer pricing from both Lilly AND Novo. AI-powered prescription routing. Bypasses traditional PBM." },
-        "intelligence": { "rating": 1, "notes": "Platform company, not clinical program. No outcomes data." },
-        "engage": { "rating": 2, "notes": "Medical appropriateness screening, telehealth option, refill tracking. Partners provide lifestyle support." }
+        "source": { "rating": 4, "notes": "ESI formulary control, Cigna network" },
+        "intelligence": { "rating": 2, "notes": "Limited public outcomes data" },
+        "engage": { "rating": 2, "notes": "Digital tools but engagement data limited" }
       },
       "pricing": {
-        "unitType": "Unknown",
-        "structure": "Fixed, transparent pricing direct from manufacturers. Bypasses PBM rebate structures.",
-        "tactics": ["PBM bypass", "Direct manufacturer contracts", "Transparent pricing", "Partner ecosystem"],
-        "estimatedCost": "Not disclosed - claims significant savings vs PBM pricing",
-        "confidence": "Likely"
+        "unitType": "PMPM",
+        "structure": "Integrated with Cigna offerings",
+        "confidence": "Inferred"
       },
       "outcomes": {
-        "metricsReported": [],
-        "trendGuarantee": false,
+        "metricsReported": ["Cost savings claims", "Utilization management"],
         "evidenceGrade": "RED",
-        "methodologicalFlags": ["Platform company", "No clinical outcomes", "Drug access only", "Partner outcomes vary"]
+        "methodologicalFlags": ["No peer-reviewed outcomes"],
+        "dataAvailability": "Not Disclosed"
       },
-      "stabilityAssessment": "EMERGING",
       "theySayWeSay": [
-        {"theySay": "We bypass PBMs with transparent direct-to-employer pricing from both manufacturers", "weSay": "Consider noting: Drug access alone doesn't drive outcomes; Onsera provides full clinical program"},
-        {"theySay": "Our partner ecosystem provides lifestyle support", "weSay": "Consider asking: How are outcomes measured across fragmented partner ecosystem?"}
+        { "theySay": "Complete solution within Cigna ecosystem", "weSay": "Consider asking: What clinical outcomes do you guarantee? How is success measured beyond pharmacy cost?" }
       ],
-      "whenTheyWin": "Employer wants drug access/price transparency only; anti-PBM sentiment; self-insured with existing wellness programs",
-      "whenOnseraWins": "Needs clinical governance; wants outcomes not just access; requires integrated population health approach"
+      "whenOnseraWins": "Buyer seeks clinical depth and outcomes validation",
+      "whenTheyWin": "Buyer committed to Cigna ecosystem"
     },
     {
-      "id": "omada-health",
+      "id": "omada",
       "name": "Omada Health",
       "segment": "Coaching-First",
       "businessModel": "B2B2C",
       "primaryChannel": "Employer",
-      "lastUpdated": "2026-01-20",
-      "coreProduct": "IPO'd June 2025 (~$1.1B valuation). First profitable quarter Q3 2025. 886K total members. 29+ peer-reviewed publications. Adding GLP-1 prescribing in 2026. Deepest evidence base in segment.",
+      "lastUpdated": "2026-01-25",
+      "stability": "STRONG",
+      "coreProduct": "Digital-first CDC-recognized DPP with behavior change focus, expanding into GLP-1 companion programs. 886K members, $256-258M FY2025 revenue.",
       "pillars": {
-        "source": { "rating": 3, "notes": "Adding prescribing 2026. Currently companion support via PCP/PBM. 100K+ GLP-1 members." },
-        "intelligence": { "rating": 5, "notes": "29+ peer-reviewed publications. ObesityWeek 2025: 84% GLP-1 persistence at 24 weeks vs 33-74% benchmark. 18.4% weight loss at 12mo." },
-        "engage": { "rating": 5, "notes": "OmadaSpark AI nutrition. EHR integration with 160K+ orgs. CDCES, health coach, exercise specialist." }
+        "source": { "rating": 1, "notes": "No prescribing; depends on PBM/PCP for GLP-1" },
+        "intelligence": { "rating": 4, "notes": "Strong engagement data; ObesityWeek 2025 showed 84% persistence at 24 weeks" },
+        "engage": { "rating": 5, "notes": "Industry-leading UX and engagement metrics" }
       },
       "pricing": {
         "unitType": "PEPM",
-        "structure": "Engagement-based model. Tiered: $45→$28→$9 PEPM over 36 months.",
-        "tactics": ["Pay for engaged only", "Multi-year contracts", "Performance options"],
-        "estimatedCost": "$45 initial PEPM decreasing; $1,000+ savings/member Year 1",
+        "structure": "$20-40 PEPM for coaching programs",
         "confidence": "Confirmed"
       },
       "outcomes": {
-        "metricsReported": ["18.4% weight loss at 12mo", "84% GLP-1 persistence at 24 weeks", "67% medication persistence vs 47-49% benchmark", "12.1% avg weight loss persistent users"],
-        "trendGuarantee": true,
-        "evidenceGrade": "GREEN",
-        "methodologicalFlags": ["Strong evidence base", "ObesityWeek 2025 conference presentation", "Microsimulation for economic projections", "Persistent member analysis"]
+        "metricsReported": ["5-7% weight loss", "84% 24-week persistence", "HbA1c reduction"],
+        "evidenceGrade": "YELLOW",
+        "methodologicalFlags": ["Observational studies", "Completer analysis in some reports"],
+        "dataAvailability": "Public"
       },
-      "stabilityAssessment": "STRONG",
       "theySayWeSay": [
-        {"theySay": "We have 29+ peer-reviewed publications - deepest evidence base", "weSay": "Consider acknowledging strong evidence, then note Onsera's clinical integration goes beyond coaching"},
-        {"theySay": "84% GLP-1 persistence at 24 weeks vs 33-74% benchmark", "weSay": "Consider noting: Onsera's integrated prescribing provides similar persistence with deeper clinical governance"},
-        {"theySay": "We're adding GLP-1 prescribing in 2026", "weSay": "Consider noting: Onsera has integrated prescribing from Day 1 with obesity medicine expertise"}
+        { "theySay": "We have the best engagement in digital health", "weSay": "Consider acknowledging their engagement strength while noting they can't prescribe-who manages the GLP-1 decisions?" },
+        { "theySay": "Our GLP-1 companion program optimizes medication use", "weSay": "Consider asking: How do you coordinate with the prescriber? What's the off-ramp strategy?" }
       ],
-      "whenTheyWin": "Evidence-conscious buyer; behavior change focus; existing Omada relationship; CVS partnership",
-      "whenOnseraWins": "Needs full clinical governance now; medication optimization focus; health plan integration"
+      "whenOnseraWins": "Buyer needs integrated prescribing and clinical oversight; wants outcomes beyond engagement",
+      "whenTheyWin": "Buyer has existing PBM/prescribing solution and needs engagement layer"
     },
     {
-      "id": "wondr-health",
+      "id": "wondr",
       "name": "Wondr Health",
       "segment": "Coaching-First",
       "businessModel": "B2B2C",
       "primaryChannel": "Employer",
-      "lastUpdated": "2026-01-20",
-      "coreProduct": "18+ years in benefits space. 2,100+ employers, 14M eligible lives. Wondr Advanced with GLP-1 prescribing (April 2025). PE-backed (Riverside, LFE Capital).",
+      "lastUpdated": "2026-01-25",
+      "stability": "STABLE",
+      "coreProduct": "Behavioral weight loss program with metabolic health focus. Employer-centric with claims-based ROI narrative.",
       "pillars": {
-        "source": { "rating": 3, "notes": "Wondr Advanced adds GLP-1 prescribing. Flexible coverage options." },
-        "intelligence": { "rating": 3, "notes": "5% weight loss core; 25 lbs at 1 year with GLP-1s. 4.6x ROI third-party validated." },
-        "engage": { "rating": 3, "notes": "Digital behavioral program + 1:1 RD. Condition pathways (diabetes, heart, MSK, menopause)." }
+        "source": { "rating": 1, "notes": "No prescribing capability" },
+        "intelligence": { "rating": 3, "notes": "Retrospective claims analyses published" },
+        "engage": { "rating": 4, "notes": "Strong employer engagement model" }
       },
       "pricing": {
-        "unitType": "Medical Claim",
-        "structure": "Bill as medical claim; pay for engaged population only",
-        "tactics": ["Medical claim billing", "Flexible GLP-1 coverage", "Engaged population only"],
-        "estimatedCost": "$1,154 net savings per participant per year",
+        "unitType": "PEPM",
+        "structure": "$15-30 PEPM typical",
         "confidence": "Likely"
       },
       "outcomes": {
-        "metricsReported": ["5% weight loss core", "25 lbs at 1 year with GLP-1", "50% metabolic syndrome reversal"],
-        "trendGuarantee": false,
+        "metricsReported": ["Weight loss %", "Claims cost reduction", "Engagement rates"],
         "evidenceGrade": "YELLOW",
-        "methodologicalFlags": ["Five peer-reviewed studies", "Third-party ROI validation", "Pre-post design"]
+        "methodologicalFlags": ["Pre-post design", "No control group in some studies"],
+        "dataAvailability": "Limited"
       },
-      "stabilityAssessment": "STABLE",
       "theySayWeSay": [
-        {"theySay": "18+ years experience treating root cause of chronic conditions", "weSay": "Consider noting: GLP-1 era requires different clinical governance than traditional behavior programs"},
-        {"theySay": "4.6x ROI third-party validated", "weSay": "Consider asking: What methodology? ITT or completers?"}
+        { "theySay": "Proven claims-based ROI", "weSay": "Consider asking: Is this ITT or completer? What's the control methodology?" }
       ],
-      "whenTheyWin": "Budget-conscious; wellness culture focus; legacy program preference",
-      "whenOnseraWins": "Clinical governance needed; medication optimization; outcomes rigor required"
+      "whenOnseraWins": "Buyer needs prescribing + clinical integration",
+      "whenTheyWin": "Buyer wants low-cost behavioral add-on"
     },
     {
       "id": "noom",
       "name": "Noom",
       "segment": "Coaching-First",
-      "businessModel": "D2C + B2B",
+      "businessModel": "B2B2C",
       "primaryChannel": "Consumer",
-      "lastUpdated": "2026-01-20",
-      "coreProduct": "Psychology-based app with Microdose GLP-1Rx (Dec 2025) for BMI 21+. Highmark partnership for 2M members (Jan 2026). Waltz Health partnership for transparent GLP-1 pricing. $624M total funding.",
+      "lastUpdated": "2026-01-25",
+      "stability": "CAUTION",
+      "coreProduct": "Consumer behavior change app pivoting to B2B. Strong brand but limited clinical depth. Partnership with Waltz Health for GLP-1 access.",
       "pillars": {
-        "source": { "rating": 3, "notes": "Noom Med offers telehealth GLP-1 prescribing. Microdose strategy (≤25% standard dose). Waltz Health partnership for pricing." },
-        "intelligence": { "rating": 3, "notes": "CDC Full Plus Recognition. 16% weight loss at 64 weeks cited. Company-funded studies. Major RCT (n=600) data collected but unpublished." },
-        "engage": { "rating": 4, "notes": "AI-powered food logging. Glucose forecasting. Face Scan and 'Future Me' visualization." }
+        "source": { "rating": 2, "notes": "Waltz Health partnership for GLP-1 access" },
+        "intelligence": { "rating": 2, "notes": "Limited peer-reviewed outcomes" },
+        "engage": { "rating": 4, "notes": "Strong consumer brand and UX" }
       },
       "pricing": {
         "unitType": "Subscription",
-        "structure": "D2C $42-59/mo; Microdose GLP-1Rx $99-119 start, then $199/mo incl medication",
-        "tactics": ["Consumer subscription", "Free tier funnel", "B2B partnerships", "Waltz Health transparent pricing"],
-        "estimatedCost": "$199/month with microdose medication",
+        "structure": "$149-209/month D2C; B2B pricing emerging",
         "confidence": "Confirmed"
       },
       "outcomes": {
-        "metricsReported": ["CDC Full Plus Recognition", "16% weight loss 64 weeks", "70% no side effects microdose"],
-        "trendGuarantee": false,
-        "evidenceGrade": "YELLOW",
-        "methodologicalFlags": ["CDC validation", "Company-funded studies", "Microdose data emerging", "Major RCT unpublished"]
+        "metricsReported": ["Weight loss claims", "Engagement metrics"],
+        "evidenceGrade": "RED",
+        "methodologicalFlags": ["D2C selection bias", "Short follow-up periods"],
+        "dataAvailability": "Limited"
       },
-      "stabilityAssessment": "STABLE",
       "theySayWeSay": [
-        {"theySay": "Our microdose approach expands market to BMI 21+", "weSay": "Consider noting: Onsera focuses on clinically appropriate populations, not market expansion"},
-        {"theySay": "We have CDC Full Plus Recognition", "weSay": "Consider noting: CDC DPP recognition is for diabetes prevention, not obesity treatment"}
+        { "theySay": "We have the strongest consumer brand in weight loss", "weSay": "Consider noting consumer brand doesn't translate to employer ROI-what's the evidence for population health impact?" }
       ],
-      "whenTheyWin": "Consumer-driven benefit; B2C brand recognition; lower BMI populations",
-      "whenOnseraWins": "Clinical governance required; employer/plan accountability; obesity-first focus"
+      "whenOnseraWins": "Buyer needs clinical governance and validated outcomes",
+      "whenTheyWin": "Buyer wants recognizable consumer brand for wellness benefits"
     },
     {
-      "id": "weightwatchers",
+      "id": "ww",
       "name": "WeightWatchers",
       "segment": "Coaching-First",
-      "businessModel": "D2C + B2B",
+      "businessModel": "B2B2C",
       "primaryChannel": "Consumer",
-      "lastUpdated": "2026-01-20",
-      "coreProduct": "Emerged from Chapter 11 (June 2025) eliminating $1.15B debt. New CEO Tara Comonte. Added oral Wegovy Jan 5, 2026. Amazon Pharmacy partnership. Peer-reviewed RCT July 2025.",
+      "lastUpdated": "2026-01-25",
+      "stability": "CAUTION",
+      "coreProduct": "Legacy weight management brand pivoting to clinical with Sequence acquisition. Telehealth GLP-1 prescribing via Wegovy partnership.",
       "pillars": {
-        "source": { "rating": 3, "notes": "WW Clinic prescribes GLP-1s via telehealth. Amazon Pharmacy integration. Oral Wegovy available." },
-        "intelligence": { "rating": 4, "notes": "AJCN RCT July 2025: 7x more likely to achieve 10% weight loss. 20.5% avg weight loss at 24mo with GLP-1 (n=4,317). 180+ total studies, 40+ RCTs." },
-        "engage": { "rating": 4, "notes": "AI Body Scanner. Weight Health Score. GLP-1 Success Program. RxFlexFund employer subsidy." }
+        "source": { "rating": 3, "notes": "Sequence telehealth + Wegovy pill access" },
+        "intelligence": { "rating": 3, "notes": "AJCN RCT July 2025 improved evidence grade" },
+        "engage": { "rating": 3, "notes": "Strong community model but aging demographic" }
       },
       "pricing": {
         "unitType": "Subscription",
-        "structure": "WW Clinic $25/mo first 3mo, then $74/mo. Medication $1,000-1,300 OOP.",
-        "tactics": ["Consumer brand", "Amazon partnership", "RxFlexFund employer subsidies"],
-        "estimatedCost": "$74/month + medication costs",
+        "structure": "$23-45/month coaching; clinical program additional",
         "confidence": "Confirmed"
       },
       "outcomes": {
-        "metricsReported": ["7x more likely to achieve 10% weight loss (RCT)", "20.5% weight loss at 24mo with GLP-1", "21% body weight loss at 12mo"],
-        "trendGuarantee": false,
+        "metricsReported": ["Weight loss %", "Engagement", "Community participation"],
         "evidenceGrade": "YELLOW",
-        "methodologicalFlags": ["Peer-reviewed RCT (AJCN July 2025)", "Observational data supports", "Post-bankruptcy execution risk"]
+        "methodologicalFlags": ["RCT now available but population differs from B2B"],
+        "dataAvailability": "Public"
       },
-      "stabilityAssessment": "CAUTION",
       "theySayWeSay": [
-        {"theySay": "Peer-reviewed RCT shows 7x better outcomes", "weSay": "Consider acknowledging strong evidence, then note: Recent bankruptcy raises execution questions"},
-        {"theySay": "Amazon Pharmacy integration for convenience", "weSay": "Consider noting: Convenience doesn't equal clinical outcomes; Onsera provides integrated care"}
+        { "theySay": "We have decades of weight management experience", "weSay": "Consider asking: How does consumer experience translate to employer population outcomes? What's the clinical governance model?" }
       ],
-      "whenTheyWin": "Consumer brand recognition; Amazon convenience; individual employee benefit",
-      "whenOnseraWins": "Needs proven stability; population health approach; employer/plan analytics"
+      "whenOnseraWins": "Buyer needs B2B-focused solution with clinical integration",
+      "whenTheyWin": "Buyer wants familiar brand for voluntary wellness benefit"
     },
     {
       "id": "calibrate",
       "name": "Calibrate",
       "segment": "Clinical-First",
-      "businessModel": "D2C + B2B2C",
+      "businessModel": "B2B2C",
       "primaryChannel": "Consumer",
-      "lastUpdated": "2026-01-20",
-      "coreProduct": "Acquired by Madryn Asset Management Oct 2023. Pivoted to enterprise-first. OptumRx partnership. Validation Institute certified. 10% weight loss guarantee or money back.",
+      "lastUpdated": "2026-01-25",
+      "stability": "STABLE",
+      "coreProduct": "MD-led metabolic reset program expanding from D2C to employer/health plan. Claims 16% weight loss at 12 months.",
       "pillars": {
-        "source": { "rating": 4, "notes": "MD-led prescribing. FDA-approved meds only (no compounding). ≤$25/mo medication guarantee." },
-        "intelligence": { "rating": 3, "notes": "16.2% at 12mo, 17.9% at 24mo (16K cohort). Validation Institute verified methodology. No peer-reviewed publications." },
-        "engage": { "rating": 4, "notes": "1:1 video coaches. Behavior change emphasis for post-medication sustainability." }
+        "source": { "rating": 3, "notes": "Telehealth prescribing but limited formulary influence" },
+        "intelligence": { "rating": 2, "notes": "Internal data only; no peer review" },
+        "engage": { "rating": 3, "notes": "Good UX but D2C-centric design" }
       },
       "pricing": {
-        "unitType": "Membership",
-        "structure": "D2C $1,649 for One-Year Metabolic Reset. $249 initial assessment.",
-        "tactics": ["Weight loss guarantee", "Medication cost guarantee", "Enterprise pivot"],
-        "estimatedCost": "$1,649 annual D2C; ≤$25/mo medication with insurance",
+        "unitType": "Subscription",
+        "structure": "$199/month D2C; B2B pricing varies",
         "confidence": "Confirmed"
       },
       "outcomes": {
-        "metricsReported": ["16.2% at 12mo", "17.3% at 18mo", "17.9% at 24mo", "78% diabetes/prediabetes normalized HbA1c"],
-        "trendGuarantee": false,
+        "metricsReported": ["16% weight loss at 12mo", "18% at 24mo", "92% maintenance claim"],
         "evidenceGrade": "RED",
-        "methodologicalFlags": ["Internal white papers only", "Validation Institute methodology verified", "No peer-reviewed publications", "16K cohort self-reported"]
+        "methodologicalFlags": ["Internal analysis only", "Completer analysis suspected", "No peer review"],
+        "dataAvailability": "Limited"
       },
-      "stabilityAssessment": "STABLE",
       "theySayWeSay": [
-        {"theySay": "Only digital metabolic health business wrapping GLP-1s with intensive lifestyle", "weSay": "Consider noting: Onsera provides similar integration with deeper plan analytics"},
-        {"theySay": "Validation Institute certified methodology", "weSay": "Consider noting: Methodology certified but no peer-reviewed publications; Onsera emphasizes external validation"}
+        { "theySay": "16% average weight loss with our metabolic reset", "weSay": "Consider asking: Is this ITT or completers? What's the n for the 24-month data?" },
+        { "theySay": "We now have health plan partnerships", "weSay": "Consider noting Onsera's deeper claims integration vs. D2C-adapted model" }
       ],
-      "whenTheyWin": "Consumer brand preference; OptumRx relationship; guaranteed outcomes appeal",
-      "whenOnseraWins": "Health plan integration; population analytics; actuarial-grade ROI methodology"
+      "whenOnseraWins": "Buyer needs validated outcomes and population health approach",
+      "whenTheyWin": "Buyer wants physician-led program with strong consumer brand"
     },
     {
-      "id": "form-health",
+      "id": "form",
       "name": "Form Health",
       "segment": "Clinical-First",
       "businessModel": "B2B2C",
       "primaryChannel": "Employer",
-      "lastUpdated": "2026-01-20",
-      "coreProduct": "ABOM-certified physicians. Overweight Program (BMI 25-29.9) launched Jan 2025. Featured on LillyDirect and NovoCare. Three partnership models: CoE, Wraparound, Cash-Pay. $38M Series B (June 2024).",
+      "lastUpdated": "2026-01-25",
+      "stability": "GROWING",
+      "coreProduct": "Board-certified obesity medicine specialists via telehealth. Evidence-focused positioning with clinical depth.",
       "pillars": {
-        "source": { "rating": 4, "notes": "Full prescribing with ABOM physicians. Program-gated AOM approach. LillyDirect + NovoCare partnerships." },
-        "intelligence": { "rating": 2, "notes": "No peer-reviewed studies found. 16% weight loss, 3-5x ROI claimed internally. Zero published outcomes despite 'tens of thousands' treated." },
-        "engage": { "rating": 4, "notes": "ABOM MDs, APPs, CSOWM-certified RDs. Mobile app with video, messaging, photo journaling." }
+        "source": { "rating": 3, "notes": "Obesity medicine specialists prescribing" },
+        "intelligence": { "rating": 3, "notes": "Clinical focus but limited published outcomes" },
+        "engage": { "rating": 3, "notes": "High-touch clinical model" }
       },
       "pricing": {
-        "unitType": "Per Visit/Membership",
-        "structure": "100% in-network billing. Three partnership models.",
-        "tactics": ["In-network billing", "Flexible partnership models", "Cash-pay options", "Manufacturer partnerships"],
-        "estimatedCost": "$299/mo self-pay; 5% BMI reduction saves ~$3.4K annually",
-        "confidence": "Confirmed"
+        "unitType": "PEPM",
+        "structure": "Premium clinical pricing",
+        "confidence": "Inferred"
       },
       "outcomes": {
-        "metricsReported": ["16% weight loss at 18mo", "57% stopped lipid meds", "50% stopped antihypertensives", "3-5x ROI"],
-        "trendGuarantee": false,
+        "metricsReported": ["Weight loss outcomes", "Clinical engagement"],
         "evidenceGrade": "RED",
-        "methodologicalFlags": ["No sample sizes provided", "ITT vs completers unclear", "Wide 3-5x ROI range", "No peer review", "Zero published outcomes"]
+        "methodologicalFlags": ["Limited public data", "Internal analyses"],
+        "dataAvailability": "Limited"
       },
-      "stabilityAssessment": "STABLE",
       "theySayWeSay": [
-        {"theySay": "Our physicians are ABOM-certified specialists", "weSay": "Consider noting: Onsera's clinical protocols meet same standards with population-level insights"},
-        {"theySay": "We deliver 3-5x ROI", "weSay": "Consider asking: Wide range - what drives variance? Why no published outcomes despite 'tens of thousands' treated?"}
+        { "theySay": "Our obesity medicine specialists provide the highest quality care", "weSay": "Consider asking: What outcomes data can you share? How do you validate ROI for employers?" }
       ],
-      "whenTheyWin": "CMO/Medical Director influence; clinical governance appetite; LillyDirect relationship",
-      "whenOnseraWins": "Population analytics needed; externally validated outcomes; health plan integration"
+      "whenOnseraWins": "Buyer needs population-level outcomes and health plan integration",
+      "whenTheyWin": "Buyer prioritizes specialist credentialing over scalability"
     },
     {
       "id": "found",
@@ -544,67 +886,61 @@
       "segment": "Clinical-First",
       "businessModel": "D2C",
       "primaryChannel": "Consumer",
-      "lastUpdated": "2026-01-20",
-      "coreProduct": "Affordable telehealth with insurance acceptance. $17/mo with insurance. 10+ medication options including GLP-1s and off-label. 250K+ people helped.",
+      "lastUpdated": "2026-01-25",
+      "stability": "CAUTION",
+      "coreProduct": "D2C telehealth weight loss with prescription medications. Consumer convenience focus.",
       "pillars": {
-        "source": { "rating": 3, "notes": "Full prescribing. One of few telehealth providers partnering with medical insurance carriers." },
-        "intelligence": { "rating": 1, "notes": "No published outcomes data. References clinical trial data only." },
-        "engage": { "rating": 2, "notes": "Mobile app with community support and tracking. Clinicians trained in obesity medicine." }
+        "source": { "rating": 2, "notes": "Telehealth prescribing, limited formulary" },
+        "intelligence": { "rating": 1, "notes": "No published outcomes" },
+        "engage": { "rating": 3, "notes": "Consumer-friendly app" }
       },
       "pricing": {
         "unitType": "Subscription",
-        "structure": "$17/mo with insurance; $129/mo without",
-        "tactics": ["Insurance acceptance", "Low price point", "Broad medication options"],
-        "estimatedCost": "$17-129/month depending on insurance",
+        "structure": "$99-149/month plus medication costs",
         "confidence": "Confirmed"
       },
       "outcomes": {
-        "metricsReported": ["250,000+ people helped"],
-        "trendGuarantee": false,
+        "metricsReported": ["Weight loss testimonials"],
         "evidenceGrade": "RED",
-        "methodologicalFlags": ["No published outcomes", "Claim-only", "Clinical trial references only"]
+        "methodologicalFlags": ["No clinical validation", "D2C selection bias"],
+        "dataAvailability": "Not Disclosed"
       },
-      "stabilityAssessment": "STABLE",
       "theySayWeSay": [
-        {"theySay": "We've helped 250,000+ people", "weSay": "Consider asking: What were the outcomes? Is there any validation?"},
-        {"theySay": "We're one of the most affordable options with insurance acceptance", "weSay": "Consider noting: Affordability without outcomes validation is incomplete value proposition"}
+        { "theySay": "Convenient access to weight loss medications", "weSay": "Consider asking: What happens after year one? What's the clinical governance?" }
       ],
-      "whenTheyWin": "Price-sensitive individual consumers; insurance acceptance priority",
-      "whenOnseraWins": "Any employer/plan context; needs outcomes data; wants clinical governance"
+      "whenOnseraWins": "Buyer needs employer-grade solution with outcomes",
+      "whenTheyWin": "Consumer-only individual benefit"
     },
     {
-      "id": "hims-hers",
+      "id": "hims",
       "name": "Hims & Hers",
       "segment": "Clinical-First",
       "businessModel": "D2C",
       "primaryChannel": "Consumer",
-      "lastUpdated": "2026-01-20",
-      "coreProduct": "$725M weight loss segment revenue 2025. 70%+ gross margin. Compounding model under FDA/FTC scrutiny. Novo terminated partnership citing 'illegal mass compounding.'",
+      "lastUpdated": "2026-01-25",
+      "stability": "STABLE",
+      "coreProduct": "D2C telehealth platform with weight loss as growth category. Compounded semaglutide at $165/month; Wegovy via NovoCare at $499/month.",
       "pillars": {
-        "source": { "rating": 3, "notes": "GLP-1 prescribing via telehealth. Compounded semaglutide until shortage ends. Regulatory risk ongoing." },
-        "intelligence": { "rating": 1, "notes": "Internal data: 10.3% weight loss at 6mo. No peer-reviewed publications. No conference presentations." },
-        "engage": { "rating": 3, "notes": "Consumer app. Monthly check-ins. Peer support optional." }
+        "source": { "rating": 3, "notes": "NovoCare partnership but compounding risk" },
+        "intelligence": { "rating": 1, "notes": "No published outcomes" },
+        "engage": { "rating": 4, "notes": "Strong D2C brand and UX" }
       },
       "pricing": {
         "unitType": "Subscription",
-        "structure": "$199/mo GLP-1 program; reduced compounded prices 20% Q4",
-        "tactics": ["Compounding arbitrage", "Consumer convenience", "Aggressive pricing"],
-        "estimatedCost": "$199/month",
+        "structure": "Compounded $165/mo; Wegovy $499/mo",
         "confidence": "Confirmed"
       },
       "outcomes": {
-        "metricsReported": ["10.3% weight loss at 6mo (internal)"],
-        "trendGuarantee": false,
+        "metricsReported": ["Customer testimonials"],
         "evidenceGrade": "RED",
-        "methodologicalFlags": ["No published outcomes", "Regulatory scrutiny", "Compounding model risk", "Internal data only"]
+        "methodologicalFlags": ["No clinical validation", "Compounding regulatory risk"],
+        "dataAvailability": "Not Disclosed"
       },
-      "stabilityAssessment": "CAUTION",
       "theySayWeSay": [
-        {"theySay": "We democratize access to weight loss medications", "weSay": "Consider noting: FDA scrutiny on compounding model; access without outcomes validation"},
-        {"theySay": "We have the lowest prices in the market", "weSay": "Consider noting: Compounding arbitrage is temporary; clinical value is lasting"}
+        { "theySay": "Affordable GLP-1 access at $165/month", "weSay": "Consider noting FDA compounding enforcement risk as shortages resolve" }
       ],
-      "whenTheyWin": "Price-sensitive D2C consumers; access over governance",
-      "whenOnseraWins": "Any B2B context; regulatory compliance matters; outcomes required"
+      "whenOnseraWins": "Buyer needs employer/plan solution with clinical governance",
+      "whenTheyWin": "Individual consumer seeking lowest cost access"
     },
     {
       "id": "ro",
@@ -612,725 +948,382 @@
       "segment": "Clinical-First",
       "businessModel": "D2C",
       "primaryChannel": "Consumer",
-      "lastUpdated": "2026-01-20",
-      "coreProduct": "Ro Body launched Feb 2023. Pivoted from compounded to branded medications. Clinical team: physicians, NPs, RDs. $876M total funding. Peer-reviewed study Dec 2025.",
+      "lastUpdated": "2026-01-25",
+      "stability": "STABLE",
+      "coreProduct": "D2C telehealth with weight loss expansion. Published retrospective study (Obesity Dec 2025) showing 16.6% weight loss at 68 weeks.",
       "pillars": {
-        "source": { "rating": 3, "notes": "GLP-1 prescribing. Transitioned from compounded to branded medications." },
-        "intelligence": { "rating": 3, "notes": "Peer-reviewed: 16.6% weight loss at 68 weeks (Obesity journal Dec 2025, n=655). Academic collaboration with Weill Cornell, Baylor." },
-        "engage": { "rating": 3, "notes": "Unlimited messaging. Biweekly clinical check-ins. At-home metabolic lab testing." }
+        "source": { "rating": 3, "notes": "Telehealth prescribing" },
+        "intelligence": { "rating": 3, "notes": "Obesity journal publication improved grade" },
+        "engage": { "rating": 4, "notes": "Strong D2C platform" }
       },
       "pricing": {
         "unitType": "Subscription",
-        "structure": "$99/mo or $145/mo including branded GLP-1",
-        "tactics": ["Insurance partnerships", "Branded medication focus", "Direct-to-consumer"],
-        "estimatedCost": "$99-145/month",
+        "structure": "$145/month plus medication",
         "confidence": "Confirmed"
       },
       "outcomes": {
-        "metricsReported": ["16.6% weight loss at 68 weeks (peer-reviewed)", "Safety outcomes consistent with trials"],
-        "trendGuarantee": false,
+        "metricsReported": ["16.6% weight loss at 68 weeks (n=1,911)"],
         "evidenceGrade": "YELLOW",
-        "methodologicalFlags": ["Peer-reviewed in Obesity journal", "Company-funded retrospective", "Academic collaboration", "Selection bias in retained cohort"]
+        "methodologicalFlags": ["Retrospective design", "Completer analysis", "Selection bias"],
+        "dataAvailability": "Public"
       },
-      "stabilityAssessment": "STABLE",
       "theySayWeSay": [
-        {"theySay": "Peer-reviewed study shows 16.6% weight loss at 68 weeks", "weSay": "Consider acknowledging publication, then note: Retrospective design with retained cohort; Onsera emphasizes ITT methodology"},
-        {"theySay": "We've transitioned to branded medications", "weSay": "Consider noting: Transition shows regulatory compliance; Onsera has always used branded medications"}
+        { "theySay": "Published weight loss outcomes in peer-reviewed journal", "weSay": "Consider asking: Is this ITT or completers? What was the retention rate?" }
       ],
-      "whenTheyWin": "D2C consumers; wants academic credibility; insurance partnership appeal",
-      "whenOnseraWins": "B2B context; long-term outcomes matter; needs population-level data"
+      "whenOnseraWins": "Buyer needs population health approach and employer integration",
+      "whenTheyWin": "D2C individual seeking convenient access with some clinical backing"
     },
     {
-      "id": "virta-health",
+      "id": "virta",
       "name": "Virta Health",
       "segment": "Hybrid",
       "businessModel": "B2B2C",
       "primaryChannel": "Employer",
-      "lastUpdated": "2026-01-20",
-      "coreProduct": "$100M+ revenue, 80% YoY growth. 550+ orgs covering 12M Americans. 0% GLP-1 Trend Guarantee. ONLY company with peer-reviewed GLP-1 deprescribing outcomes. ~$2.1B valuation.",
+      "lastUpdated": "2026-01-25",
+      "stability": "STRONG",
+      "coreProduct": "Ketogenic diet-based metabolic health with diabetes reversal focus. GLP-1 deprescription positioning. Claims $10,203 savings/patient over 2 years.",
       "pillars": {
-        "source": { "rating": 4, "notes": "Full prescribing. GLP-1 deprescribing focus. Cost guarantees with 0% trend." },
-        "intelligence": { "rating": 4, "notes": "Peer-reviewed deprescribing study (Diabetes Therapy Feb 2024): >70% maintained ≥5% weight loss at 12mo post-deprescription. 5-year extension: 12.5% sustained diabetes remission." },
-        "engage": { "rating": 4, "notes": "Physician + health coach. Continuous remote monitoring. Ketogenic metabolic focus." }
+        "source": { "rating": 3, "notes": "Prescribing capability but keto-centric" },
+        "intelligence": { "rating": 4, "notes": "Multiple publications but methodology concerns" },
+        "engage": { "rating": 4, "notes": "Strong coaching model" }
       },
       "pricing": {
         "unitType": "PEPM",
-        "structure": "Risk-based with 0% GLP-1 Trend Guarantee. 3-year contracts typical.",
-        "tactics": ["Trend guarantees", "Deprescribing value prop", "Multi-year lock-in"],
-        "estimatedCost": "Not publicly disclosed",
+        "structure": "$200-400 PEPM for full program",
         "confidence": "Likely"
       },
       "outcomes": {
-        "metricsReported": ["$10,203 savings/patient over 2 years", ">70% maintained ≥5% weight loss post-deprescription", "12.5% sustained diabetes remission at 5 years", "200K+ members"],
-        "trendGuarantee": true,
+        "metricsReported": ["$10,203 2-year savings", "Diabetes reversal rates", "GLP-1 deprescription"],
         "evidenceGrade": "YELLOW",
-        "methodologicalFlags": ["Peer-reviewed deprescription study", "DiD analysis not statistically validated", "Selection bias in completer analysis", "Self-funded studies"]
+        "methodologicalFlags": ["DiD methodology", "Selection bias in completers", "Self-funded studies"],
+        "dataAvailability": "Public"
       },
-      "stabilityAssessment": "STRONG",
       "theySayWeSay": [
-        {"theySay": "We're the only company with peer-reviewed GLP-1 deprescribing outcomes", "weSay": "Consider acknowledging, then note: Onsera's external validation includes deprescribing protocols"},
-        {"theySay": "0% GLP-1 Trend Guarantee eliminates cost risk", "weSay": "Consider asking: What's the methodology? What happens after guarantee period?"}
+        { "theySay": "$10,203 savings per patient over 2 years", "weSay": "Consider asking: Is this actuarially validated? ITT or completer analysis?" },
+        { "theySay": "We can help patients get off GLP-1s with our ketogenic approach", "weSay": "Consider asking: What's the long-term weight maintenance data? What happens if keto isn't sustainable?" }
       ],
-      "whenTheyWin": "CFO focus on cost guarantees; diabetes-first population; ketogenic alignment",
-      "whenOnseraWins": "Obesity-first focus needed; wants broader cardiometabolic approach; external validation priority"
+      "whenOnseraWins": "Buyer wants flexible approach beyond keto; needs external validation",
+      "whenTheyWin": "Buyer bought into keto philosophy; diabetes reversal primary focus"
     },
     {
-      "id": "vida-health",
+      "id": "vida",
       "name": "Vida Health",
       "segment": "Hybrid",
       "businessModel": "B2B2C",
       "primaryChannel": "Employer",
-      "lastUpdated": "2026-01-20",
-      "coreProduct": "5-step obesity therapy with behavior change gating. 2.5M+ lives served. 15+ peer-reviewed papers (mostly diabetes/prevention). 100% fees at risk guarantee option.",
+      "lastUpdated": "2026-01-25",
+      "stability": "STABLE",
+      "coreProduct": "Multi-condition chronic care platform with weight management track. Acquired Enara Health for obesity focus.",
       "pillars": {
-        "source": { "rating": 4, "notes": "Full prescribing with step therapy. Low-cost meds first, then GLP-1s. Deprescribing protocols." },
-        "intelligence": { "rating": 3, "notes": "Claims 15+ papers but most are diabetes/prevention. 1.37% A1C reduction (JMIR peer-reviewed). Internal BoB analysis for obesity." },
-        "engage": { "rating": 4, "notes": "Strong care team diversity. 80% engagement claimed. 50% care team are POC." }
+        "source": { "rating": 3, "notes": "Prescribing via Enara acquisition" },
+        "intelligence": { "rating": 3, "notes": "Published outcomes but limited" },
+        "engage": { "rating": 4, "notes": "Multi-condition engagement platform" }
       },
       "pricing": {
         "unitType": "PEPM",
-        "structure": "Risk-based with up to 100% fees at risk. 2:1 ROI guarantee.",
-        "tactics": ["Outcomes guarantees", "Step therapy", "Risk-based pricing"],
-        "estimatedCost": "$375-475 PMPM Rx cost avoidance claimed",
+        "structure": "$30-60 PEPM varies by condition mix",
         "confidence": "Likely"
       },
       "outcomes": {
-        "metricsReported": ["7-10% weight loss", "15% hospital/ER reduction", "2:1 ROI", "1.37% A1C reduction (peer-reviewed)"],
-        "trendGuarantee": true,
+        "metricsReported": ["Weight loss %", "Multi-condition outcomes"],
         "evidenceGrade": "YELLOW",
-        "methodologicalFlags": ["JMIR peer-reviewed for diabetes", "Selection bias - BoB analysis for obesity", "Likely completer population", "No obesity-specific peer review"]
+        "methodologicalFlags": ["Observational designs", "Completer analyses"],
+        "dataAvailability": "Limited"
       },
-      "stabilityAssessment": "STABLE",
       "theySayWeSay": [
-        {"theySay": "We have 15+ peer-reviewed papers", "weSay": "Consider asking: How many are on obesity specifically vs. diabetes prevention?"},
-        {"theySay": "100% fees at risk shows confidence", "weSay": "Consider asking: Based on projected or realized claims? What's the validation?"}
+        { "theySay": "We address weight as part of whole-person chronic care", "weSay": "Consider asking: What's the dedicated obesity expertise vs. generalist approach?" }
       ],
-      "whenTheyWin": "Health equity focus; step therapy appeal; fees-at-risk comfort",
-      "whenOnseraWins": "Needs externally validated outcomes; obesity-first vs. diabetes extension"
+      "whenOnseraWins": "Buyer needs focused obesity solution with deep expertise",
+      "whenTheyWin": "Buyer wants multi-condition platform play"
     },
     {
-      "id": "ilant-health",
+      "id": "ilant",
       "name": "Ilant Health",
       "segment": "Hybrid",
       "businessModel": "B2B2C",
-      "primaryChannel": "Health Plan",
-      "lastUpdated": "2026-01-20",
-      "coreProduct": "Johns Hopkins spinout. CMO-targeted positioning. 5:1 ROI at 12mo claimed. Phased approach with metabolic health monitoring. Prescryptive partnership (Jan 2026) for employer-direct GLP-1 access.",
+      "primaryChannel": "Employer",
+      "lastUpdated": "2026-01-25",
+      "stability": "EMERGING",
+      "coreProduct": "AI-powered metabolic health with GLP-1 management. Prescryptive partnership (Jan 2026). Microsimulation ROI models.",
       "pillars": {
-        "source": { "rating": 4, "notes": "Full prescribing. Phased medication introduction based on progress. Prescryptive partnership for transparent pricing." },
-        "intelligence": { "rating": 2, "notes": "5:1 ROI claimed (AJMC Health Economics poster). Johns Hopkins credibility. No peer-reviewed publications. Claims 15% weight loss, >90% retention." },
-        "engage": { "rating": 3, "notes": "Behavioral coaching. Metabolic health monitoring. Evidence-based protocols." }
+        "source": { "rating": 3, "notes": "Prescribing + Prescryptive partnership" },
+        "intelligence": { "rating": 2, "notes": "Microsimulation models (predictive, not realized)" },
+        "engage": { "rating": 3, "notes": "AI-powered personalization" }
       },
       "pricing": {
         "unitType": "PEPM",
-        "structure": "Microsimulation-based ROI projections. Health plan focus. Prescryptive partnership for transparent employer pricing.",
-        "tactics": ["Academic credibility", "Phased medication", "Health plan partnerships", "Prescryptive transparent pricing"],
-        "estimatedCost": "Not publicly disclosed",
-        "confidence": "Unknown"
+        "structure": "Emerging; partnership models",
+        "confidence": "Inferred"
       },
       "outcomes": {
-        "metricsReported": ["5:1 ROI at 12mo", "15% weight loss", ">90% retention", "Extrapolated 10-year savings"],
-        "trendGuarantee": false,
+        "metricsReported": ["Projected ROI", "AI personalization metrics"],
         "evidenceGrade": "RED",
-        "methodologicalFlags": ["Microsimulation extrapolation", "Poster not full publication", "Short actual data window", "No peer review", "Marketing claims unvalidated"]
+        "methodologicalFlags": ["Microsimulation is prediction, not measurement", "No realized outcomes"],
+        "dataAvailability": "Limited"
       },
-      "stabilityAssessment": "EMERGING",
       "theySayWeSay": [
-        {"theySay": "Johns Hopkins spinout with academic rigor", "weSay": "Consider noting: Academic origin is positive; but no peer-reviewed publications exist"},
-        {"theySay": "5:1 ROI validated by AJMC poster", "weSay": "Consider asking: Poster vs. peer-reviewed publication? Real or projected savings?"}
+        { "theySay": "Our AI predicts optimal treatment pathways", "weSay": "Consider asking: What realized outcomes can you show? Prediction vs. measurement matters for ROI." }
       ],
-      "whenTheyWin": "CMO/academic credibility important; health plan buyer; Johns Hopkins relationship",
-      "whenOnseraWins": "Needs outcomes vs. projections; employer buyer; actuarial-grade validation"
+      "whenOnseraWins": "Buyer needs proven outcomes, not predictive models",
+      "whenTheyWin": "Buyer attracted to AI innovation narrative"
     },
     {
-      "id": "flytehealth",
+      "id": "flyte",
       "name": "FlyteHealth",
       "segment": "Hybrid",
       "businessModel": "B2B2C",
       "primaryChannel": "Health Plan",
-      "lastUpdated": "2026-01-20",
-      "coreProduct": "Most similar positioning to Onsera. AI-driven cardiometabolic care. Connecticut multi-year extension. 4,200+ members. Featured by CMS for eCKM. 'Flyte Intelligence' AI prescribing.",
+      "lastUpdated": "2026-01-25",
+      "stability": "GROWING",
+      "coreProduct": "Health plan-focused GLP-1 management with Milliman actuarial validation. 86% adherence rate claims.",
       "pillars": {
-        "source": { "rating": 4, "notes": "Full prescribing with AI-driven optimization. Multi-state licensing." },
-        "intelligence": { "rating": 3, "notes": "Milliman actuarial study: 86% medication adherence, $1.2M cost avoidance. 13% weight loss non-GLP-1, 16% with GLP-1. State contract traction." },
-        "engage": { "rating": 4, "notes": "Digital platform with care team. State Medicaid experience. eCKM positioning." }
-      },
-      "pricing": {
-        "unitType": "Unknown",
-        "structure": "State contract models. Value-based arrangements.",
-        "tactics": ["State/Medicaid contracts", "Value-based care", "AI positioning", "Milliman validation"],
-        "estimatedCost": "Not publicly disclosed",
-        "confidence": "Unknown"
-      },
-      "outcomes": {
-        "metricsReported": ["86% medication adherence (Milliman)", "$1.2M cost avoidance Year 1", "13% weight loss non-GLP-1", "16% with GLP-1", "State contract renewals"],
-        "trendGuarantee": false,
-        "evidenceGrade": "YELLOW",
-        "methodologicalFlags": ["Milliman third-party actuarial validation", "Limited public data", "State contract focus", "AI claims not independently validated"]
-      },
-      "stabilityAssessment": "GROWING",
-      "theySayWeSay": [
-        {"theySay": "Milliman-validated outcomes with 86% adherence", "weSay": "Consider acknowledging third-party validation, then note: Onsera has similar actuarial rigor with broader commercial traction"},
-        {"theySay": "Our Flyte Intelligence AI drives prescribing decisions", "weSay": "Consider asking: What validation exists for AI recommendations? What's the methodology?"}
-      ],
-      "whenTheyWin": "State/Medicaid buyer; AI innovation appeal; eCKM focus",
-      "whenOnseraWins": "Commercial employer focus; needs validated outcomes; deeper analytics required"
-    },
-    {
-      "id": "heuro-health",
-      "name": "Heuro Health",
-      "segment": "Hybrid",
-      "businessModel": "B2B2C",
-      "primaryChannel": "Employer",
-      "lastUpdated": "2026-01-20",
-      "coreProduct": "24-month program similar to Onsera. Neuroplasticity-based coaching. Genomic testing for GLP-1 response. Milliman CareFlowIQ partnership. Very limited public presence.",
-      "pillars": {
-        "source": { "rating": 3, "notes": "Full prescribing. Genomic testing for medication response." },
-        "intelligence": { "rating": 2, "notes": "Milliman partnership adds credibility. No public outcomes data." },
-        "engage": { "rating": 3, "notes": "Neuroplasticity coaching. 24-month journey structure." }
-      },
-      "pricing": {
-        "unitType": "Unknown",
-        "structure": "Not publicly disclosed",
-        "tactics": ["Milliman partnership", "Genomic differentiation", "Long journey"],
-        "estimatedCost": "Not disclosed",
-        "confidence": "Unknown"
-      },
-      "outcomes": {
-        "metricsReported": [],
-        "trendGuarantee": false,
-        "evidenceGrade": "RED",
-        "methodologicalFlags": ["No public outcomes", "Milliman partnership only credibility signal", "Very limited information"]
-      },
-      "stabilityAssessment": "EMERGING",
-      "theySayWeSay": [
-        {"theySay": "We partner with Milliman for clinical intelligence", "weSay": "Consider noting: Partnership is positive; outcomes validation still needed"},
-        {"theySay": "Genomic testing personalizes GLP-1 response", "weSay": "Consider asking: What validation exists for genomic predictions?"}
-      ],
-      "whenTheyWin": "Genomic differentiation appeal; Milliman relationship; 24-month commitment",
-      "whenOnseraWins": "Needs proven outcomes; wants established track record; analytics depth required"
-    },
-    {
-      "id": "teladoc-livongo",
-      "name": "Teladoc / Livongo",
-      "segment": "Hybrid",
-      "businessModel": "B2B2C",
-      "primaryChannel": "Employer",
-      "lastUpdated": "2026-01-20",
-      "coreProduct": "90M US members. Launched comprehensive weight management 2024. myStrength Complete mental health integration. Broad telehealth platform with GLP-1 add-on.",
-      "pillars": {
-        "source": { "rating": 3, "notes": "GLP-1 prescribing via telehealth network. Integrated with broader platform." },
-        "intelligence": { "rating": 2, "notes": "Limited weight-specific outcomes. Leverages Livongo diabetes data." },
-        "engage": { "rating": 4, "notes": "Comprehensive platform. Mental health integration. Connected devices." }
+        "source": { "rating": 3, "notes": "Health plan integration focus" },
+        "intelligence": { "rating": 4, "notes": "Milliman actuarial study-best-in-class validation approach" },
+        "engage": { "rating": 3, "notes": "Health plan member engagement" }
       },
       "pricing": {
         "unitType": "PMPM",
-        "structure": "Platform pricing with weight management add-on",
-        "tactics": ["Platform bundling", "Existing relationships", "Mental health integration"],
-        "estimatedCost": "Platform-level pricing",
-        "confidence": "Unknown"
+        "structure": "Health plan contracted rates",
+        "confidence": "Inferred"
       },
       "outcomes": {
-        "metricsReported": ["Platform-level metrics only"],
-        "trendGuarantee": false,
-        "evidenceGrade": "RED",
-        "methodologicalFlags": ["No weight-specific outcomes published", "Leverages diabetes platform data", "Add-on positioning"]
+        "metricsReported": ["86% adherence", "Actuarial ROI modeling"],
+        "evidenceGrade": "YELLOW",
+        "methodologicalFlags": ["Actuarial validation strong but adherence != outcomes"],
+        "dataAvailability": "Limited"
       },
-      "stabilityAssessment": "STRONG",
       "theySayWeSay": [
-        {"theySay": "90M members - scale and proven telehealth delivery", "weSay": "Consider noting: Scale doesn't equal obesity outcomes; Onsera is purpose-built for weight management"},
-        {"theySay": "Mental health integration addresses root causes", "weSay": "Consider noting: Onsera's integrated model includes behavioral health within clinical framework"}
+        { "theySay": "Milliman-validated ROI and 86% adherence", "weSay": "Consider acknowledging strong validation approach while asking: What are the weight loss outcomes, not just adherence?" }
       ],
-      "whenTheyWin": "Existing Teladoc client; wants platform consolidation; mental health priority",
-      "whenOnseraWins": "Needs obesity-specific expertise; wants validated weight outcomes; clinical depth over breadth"
+      "whenOnseraWins": "Buyer needs full clinical outcomes beyond adherence metrics",
+      "whenTheyWin": "Buyer prioritizes actuarial validation and health plan integration"
     },
     {
-      "id": "twin-health",
+      "id": "twin",
       "name": "Twin Health",
       "segment": "Hybrid",
       "businessModel": "B2B2C",
       "primaryChannel": "Employer",
-      "lastUpdated": "2026-01-20",
-      "coreProduct": "Whole Body Digital Twin technology with 3,000+ daily data points from CGM, activity trackers, smart scales. $272-302M raised, ~$950M valuation. Enterprise clients: Walmart, Blackstone, Berkshire Hathaway, HCSC. 100% outcomes-based pricing.",
+      "lastUpdated": "2026-01-25",
+      "stability": "GROWING",
+      "coreProduct": "AI-powered 'Whole Body Digital Twin' for metabolic health. Cleveland Clinic RCT partnership. $950M valuation (Oct 2024).",
       "pillars": {
-        "source": { "rating": 2, "notes": "Positions as GLP-1 ALTERNATIVE and off-ramp, not prescriber. Lifestyle-first approach. Does NOT prescribe GLP-1s." },
-        "intelligence": { "rating": 4, "notes": "Cleveland Clinic RCT (NEJM Catalyst Aug 2025): 71% achieved A1C <6.5% without meds, 85% GLP-1 elimination (n=150). NAFLD/T2D RCT: 94% medication elimination. Single-center, modest sample." },
-        "engage": { "rating": 5, "notes": "Physicians, nurses, dietitians, health coaches. CGM + activity + scale + BP monitoring. High-touch, device-intensive model." }
+        "source": { "rating": 3, "notes": "Prescribing capability with AI personalization" },
+        "intelligence": { "rating": 3, "notes": "Cleveland Clinic RCT partnership-potential GREEN upgrade" },
+        "engage": { "rating": 3, "notes": "AI-personalized experience" }
       },
       "pricing": {
-        "unitType": "Outcomes-Based",
-        "structure": "100% outcomes-based pricing - no PMPM fees. Pay only for results.",
-        "tactics": ["Outcomes-based only", "No PMPM", "GLP-1 elimination value prop", "Enterprise focus"],
-        "estimatedCost": "Claims $8K+ savings per member (not peer-reviewed)",
+        "unitType": "PEPM",
+        "structure": "Premium pricing for AI capabilities",
+        "confidence": "Inferred"
+      },
+      "outcomes": {
+        "metricsReported": ["AI personalization metrics", "Diabetes reversal claims"],
+        "evidenceGrade": "RED",
+        "methodologicalFlags": ["Cleveland Clinic RCT pending", "Current evidence internal only"],
+        "dataAvailability": "Limited"
+      },
+      "theySayWeSay": [
+        { "theySay": "Our Whole Body Digital Twin provides unprecedented personalization", "weSay": "Consider asking: When will Cleveland Clinic RCT results be available? Current evidence grade is RED." }
+      ],
+      "whenOnseraWins": "Buyer needs proven outcomes now, not future RCT potential",
+      "whenTheyWin": "Buyer attracted to AI innovation and willing to wait for RCT results"
+    },
+    {
+      "id": "heuro",
+      "name": "Heuro Health",
+      "segment": "Hybrid",
+      "businessModel": "B2B2C",
+      "primaryChannel": "Employer",
+      "lastUpdated": "2026-01-25",
+      "stability": "EMERGING",
+      "coreProduct": "Emerging metabolic health player with integrated care approach.",
+      "pillars": {
+        "source": { "rating": 2, "notes": "Limited information available" },
+        "intelligence": { "rating": 1, "notes": "No public outcomes data" },
+        "engage": { "rating": 2, "notes": "Limited visibility" }
+      },
+      "pricing": {
+        "unitType": "Unknown",
+        "structure": "Not disclosed",
+        "confidence": "Unknown"
+      },
+      "outcomes": {
+        "metricsReported": [],
+        "evidenceGrade": "RED",
+        "methodologicalFlags": ["No public data"],
+        "dataAvailability": "Not Disclosed"
+      },
+      "theySayWeSay": [],
+      "whenOnseraWins": "Buyer needs established player with proven outcomes",
+      "whenTheyWin": "Unknown"
+    },
+    {
+      "id": "teladoc",
+      "name": "Teladoc/Livongo",
+      "segment": "Hybrid",
+      "businessModel": "B2B2C",
+      "primaryChannel": "Employer",
+      "lastUpdated": "2026-01-25",
+      "stability": "CAUTION",
+      "coreProduct": "Multi-condition chronic care platform with weight management as secondary focus. Livongo integration challenges ongoing.",
+      "pillars": {
+        "source": { "rating": 3, "notes": "Broad telehealth network" },
+        "intelligence": { "rating": 3, "notes": "Livongo data capabilities" },
+        "engage": { "rating": 3, "notes": "Multi-condition platform" }
+      },
+      "pricing": {
+        "unitType": "PEPM",
+        "structure": "$30-50 PEPM varies",
         "confidence": "Likely"
       },
       "outcomes": {
-        "metricsReported": ["71% achieved A1C <6.5% without glucose-lowering meds (RCT)", "85% GLP-1 elimination", "8.6% weight loss (RCT)", "94% T2D medication elimination"],
-        "trendGuarantee": false,
-        "evidenceGrade": "GREEN",
-        "methodologicalFlags": ["Peer-reviewed RCT (NEJM Catalyst)", "Single-center Cleveland Clinic", "Modest sample (n=150)", "No long-term (>12mo) durability data", "Weight loss (8.6%) below GLP-1 monotherapy (15-20%)", "Cost savings claims not peer-reviewed"]
+        "metricsReported": ["Multi-condition outcomes", "Engagement metrics"],
+        "evidenceGrade": "YELLOW",
+        "methodologicalFlags": ["Weight not primary focus", "Integration challenges"],
+        "dataAvailability": "Limited"
       },
-      "stabilityAssessment": "STRONG",
       "theySayWeSay": [
-        {"theySay": "Peer-reviewed Cleveland Clinic RCT proves our approach", "weSay": "Consider acknowledging strong evidence, then note: Single-center, modest sample (n=150), no long-term data. Onsera emphasizes multi-site validation."},
-        {"theySay": "We eliminate GLP-1 dependency - 85% off medications", "weSay": "Consider asking: What's the weight loss outcome? RCT showed 8.6% vs 15-20% with GLP-1s. Is medication elimination the right goal for all patients?"},
-        {"theySay": "100% outcomes-based pricing shows confidence", "weSay": "Consider noting: Outcomes-based is positive; but what outcomes? Weight loss? A1C? How measured?"},
-        {"theySay": "Walmart and Blackstone trust us", "weSay": "Consider noting: Enterprise traction is real; Onsera has similar enterprise-grade capabilities with health plan integration"}
+        { "theySay": "Comprehensive virtual care platform", "weSay": "Consider asking: What's your dedicated obesity expertise? How do you prioritize weight management vs. other conditions?" }
       ],
-      "whenTheyWin": "Employer wants GLP-1 cost avoidance; diabetes-first population; device-intensive appeal; outcomes-based pricing preference",
-      "whenOnseraWins": "Obesity-first focus; needs clinical GLP-1 optimization not just elimination; wants multi-site validation; health plan integration required"
-    }
-  ],
-  "digest": [
-    {
-      "id": "digest-2026-01-20-twin-health-series-e",
-      "date": "2025-08-21",
-      "competitor": "Twin Health",
-      "headline": "Twin Health raises $53M Series E at $950M valuation",
-      "category": "Competitor",
-      "priority": "High",
-      "summary": "Digital twin metabolic health company raised $53M led by Maj Invest. Board includes former Cleveland Clinic CEO Toby Cosgrove and former Starbucks CEO Kevin Johnson. Enterprise clients include Walmart, Blackstone, Berkshire Hathaway.",
-      "sourceName": "Fortune, MobiHealthNews",
-      "onseraImplications": "Twin Health is well-funded competitor with strong enterprise traction. Key differentiator: they position as GLP-1 alternative/off-ramp vs. Onsera's integrated GLP-1 optimization. Their 8.6% weight loss (RCT) is below GLP-1 outcomes.",
-      "confidence": "Confirmed"
-    },
-    {
-      "id": "digest-2026-01-20-waltz-health-launch",
-      "date": "2026-01-01",
-      "competitor": "EVERSANA + Waltz Health",
-      "headline": "Waltz Health launches direct-to-employer GLP-1 model with Lilly AND Novo partnerships",
-      "category": "Channel/Coverage",
-      "priority": "Critical",
-      "summary": "First platform with direct contracts from BOTH major GLP-1 manufacturers. Partners include Noom, 9amHealth, Ilant Health, Goodpath. Transparent pricing bypasses PBM rebate structures. Major structural market shift.",
-      "sourceName": "PR Newswire, Fierce Healthcare, pharmaphorum",
-      "onseraImplications": "Direct-to-employer models threaten traditional PBM economics. However, drug access alone doesn't drive outcomes. Onsera's integrated clinical program provides value beyond medication access.",
-      "confidence": "Confirmed"
-    },
-    {
-      "id": "digest-2026-01-20-lilly-direct-employer",
-      "date": "2025-11-15",
-      "competitor": "Market",
-      "headline": "Eli Lilly unveils direct-to-employer model for GLP-1s",
-      "category": "Channel/Coverage",
-      "priority": "Critical",
-      "summary": "Pharmaceutical manufacturers becoming direct competitors to PBMs. Lilly offering transparent pricing to self-insured employers. Part of broader trend toward PBM disintermediation.",
-      "sourceName": "Fierce Healthcare",
-      "onseraImplications": "Manufacturer-direct models create pricing pressure but don't address clinical governance. Position Onsera's integrated care as essential complement to medication access.",
-      "confidence": "Confirmed"
-    },
-    {
-      "id": "digest-2026-01-20-cms-balance",
-      "date": "2025-12-15",
-      "competitor": "Market",
-      "headline": "CMS BALANCE Model: First federal program for broad GLP-1 access in Medicare/Medicaid",
-      "category": "Regulatory",
-      "priority": "Critical",
-      "summary": "Launching July 2026 with $50 standardized copays for eligible beneficiaries. Direct manufacturer negotiations bypass PBM pricing. Extends to Medicaid (May 2026) and Medicare Part D (Jan 2027).",
-      "sourceName": "CMS, White House",
-      "onseraImplications": "Government market expansion creates B2G opportunity for 2026-2027. Companies with outcomes validation and cost management will be positioned for government contracts.",
-      "confidence": "Confirmed"
-    },
-    {
-      "id": "digest-2026-01-20-ro-peer-review",
-      "date": "2025-12-10",
-      "competitor": "Ro",
-      "headline": "Ro publishes peer-reviewed study: 16.6% weight loss at 68 weeks",
-      "category": "Competitor",
-      "priority": "High",
-      "summary": "First peer-reviewed telehealth-specific GLP-1 outcomes study published in Obesity journal. N=655, academic collaboration with Weill Cornell and Baylor. Company-funded retrospective design.",
-      "sourceName": "Obesity journal, PR Newswire",
-      "onseraImplications": "Ro now has peer-reviewed evidence, upgrading from RED to YELLOW. However, retrospective design and retained cohort analysis limits strength. Onsera can emphasize ITT methodology.",
-      "confidence": "Confirmed"
-    },
-    {
-      "id": "digest-2026-01-20-omada-obesityweek",
-      "date": "2025-11-04",
-      "competitor": "Omada Health",
-      "headline": "Omada presents ObesityWeek 2025 data: 84% GLP-1 persistence at 24 weeks",
-      "category": "Competitor",
-      "priority": "High",
-      "summary": "Real-world evidence shows 84% persistence vs 33-74% benchmark. 12.1% average weight loss for persistent users. Strengthens evidence lead in Coaching-First segment.",
-      "sourceName": "ObesityWeek 2025, Company press release",
-      "onseraImplications": "Omada continues building evidence moat. Adding prescribing in 2026 closes capability gap. Emphasize Onsera's integrated prescribing from Day 1.",
-      "confidence": "Confirmed"
-    },
-    {
-      "id": "digest-2026-01-20-prime-jmcp",
-      "date": "2025-10-15",
-      "competitor": "Market",
-      "headline": "Prime Therapeutics JMCP study: No medical cost offsets in first 2 years of GLP-1 treatment",
-      "category": "Drug/Science",
-      "priority": "Critical",
-      "summary": "Peer-reviewed analysis found only 14.3% of patients remained on GLP-1 therapy at 2 years. Costs increased $7,470 (56%) in year one with no medical cost offsets observed. Only 10% achieved ≥10% weight loss at 2 years.",
-      "sourceName": "Journal of Managed Care Pharmacy (JMCP)",
-      "onseraImplications": "Critical evidence for sales conversations. Medication-only approaches don't deliver ROI. Integrated programs with engagement support essential for outcomes AND cost management.",
-      "confidence": "Confirmed"
-    },
-    {
-      "id": "digest-2026-01-20-ilant-prescryptive",
-      "date": "2026-01-13",
-      "competitor": "Ilant Health",
-      "headline": "Ilant Health partners with Prescryptive for employer-direct GLP-1 access",
-      "category": "Competitor",
-      "priority": "Medium",
-      "summary": "Partnership expands Ilant's employer-direct access with transparent GLP-1 pricing via Prescryptive platform. Part of broader trend toward PBM disintermediation.",
-      "sourceName": "PR Newswire",
-      "onseraImplications": "Ilant gaining distribution channels but still lacks peer-reviewed outcomes. Partnership doesn't address evidence gap.",
-      "confidence": "Confirmed"
-    },
-    {
-      "id": "digest-2026-01-15-calibrate-cigna",
-      "date": "2026-01-10",
-      "competitor": "Calibrate",
-      "headline": "Calibrate announces Cigna partnership, expanding enterprise coverage",
-      "category": "Competitor",
-      "priority": "Critical",
-      "summary": "Calibrate's Cigna partnership signals accelerated B2B pivot. Coverage for millions of Cigna members. Direct competition with Onsera in health plan channel.",
-      "sourceName": "Calibrate Press Release, MedCity News",
-      "onseraImplications": "Calibrate now competes directly in health plan channel. Sales teams may want to emphasize Onsera's deeper analytics integration vs. Calibrate's D2C-adapted model.",
-      "confidence": "Confirmed"
-    },
-    {
-      "id": "digest-2026-01-13-oral-wegovy",
-      "date": "2026-01-05",
-      "competitor": "Market",
-      "headline": "Oral Wegovy launches at 70,000+ pharmacies; $469/month vs $1,349 injectable",
-      "category": "Drug/Science",
-      "priority": "Critical",
-      "summary": "Oral semaglutide 50mg daily for weight loss. 15.1% weight loss vs 16.7% injectable in OASIS trials. 70% price reduction. Game-changer for access and adherence.",
-      "sourceName": "Novo Nordisk, FDA, Reuters",
-      "onseraImplications": "Oral formulation addresses injection aversion (major barrier). Price reduction pressures value proposition - clinical governance becomes more important than cost management.",
-      "confidence": "Confirmed"
-    },
-    {
-      "id": "digest-2026-01-13-coverage-rollbacks",
-      "date": "2026-01-01",
-      "competitor": "Market",
-      "headline": "Wave of GLP-1 coverage rollbacks effective January 1, 2026",
-      "category": "Channel/Coverage",
-      "priority": "Critical",
-      "summary": "Mass General Brigham, California Medi-Cal, Harvard Pilgrim, BCBS MA eliminating/restricting GLP-1 weight loss coverage. Driven by unsustainable cost growth outpacing clinical ROI timeframes.",
-      "sourceName": "Mass General Brigham, California DHCS, MedCity News",
-      "onseraImplications": "Coverage rollbacks validate Onsera's value proposition: clinical governance + outcomes measurement to justify coverage. Sales teams may want to emphasize ROI transparency.",
-      "confidence": "Confirmed"
-    },
-    {
-      "id": "digest-2026-01-13-phti",
-      "date": "2026-01-04",
-      "competitor": "Market",
-      "headline": "PHTI releases employer GLP-1 management framework with 5 recommendations",
-      "category": "Channel/Coverage",
-      "priority": "High",
-      "summary": "Peterson Health Technology Institute guide: clinically-driven eligibility, required lifestyle programs, structured discontinuation support, virtual solutions, outcomes monitoring. Onsera aligns with all 5.",
-      "sourceName": "Peterson Health Technology Institute, MedCity News",
-      "onseraImplications": "Onsera model aligns with all 5 PHTI recommendations. Reference framework in sales conversations as third-party validation of approach.",
-      "confidence": "Confirmed"
-    },
-    {
-      "id": "digest-2026-01-13-retatrutide",
-      "date": "2025-12-11",
-      "competitor": "Market",
-      "headline": "Lilly retatrutide Phase 3: 28.7% weight loss sets new efficacy benchmark",
-      "category": "Drug/Science",
-      "priority": "High",
-      "summary": "TRIUMPH-4: 39% achieved ≥30% weight loss; 24% achieved ≥35%. Triple agonist (GLP-1/GIP/glucagon). Seven Phase 3 readouts 2026. GlobalData forecasts $15.6B sales by 2031.",
-      "sourceName": "Eli Lilly, BioPharma Dive, STAT News",
-      "onseraImplications": "Next-gen GLP-1s raise efficacy bar. Position Onsera's clinical governance as essential for managing more potent medications safely.",
-      "confidence": "Confirmed"
-    },
-    {
-      "id": "digest-2026-01-13-omada-ipo",
-      "date": "2025-06-15",
-      "competitor": "Omada Health",
-      "headline": "Omada Health IPO'd at $1.1B valuation; first profitable quarter Q3 2025",
-      "category": "Competitor",
-      "priority": "High",
-      "summary": "IPO at $19/share June 2025. 886K members (+55% YoY). Revenue $256-258M (+51-52% YoY). Adding GLP-1 prescribing 2026. Released 12-month outcomes Jan 8: 18.4% weight loss, 67% persistence.",
-      "sourceName": "SEC filings, Company announcements",
-      "onseraImplications": "Omada brings well-funded competition with deepest evidence base. Their prescribing expansion (2026) closes capability gap. Emphasize Onsera's integrated model from Day 1.",
-      "confidence": "Confirmed"
-    },
-    {
-      "id": "digest-2026-01-13-trumprx",
-      "date": "2025-11-15",
-      "competitor": "Market",
-      "headline": "Trump Medicare GLP-1 pricing deal: $245/month injectable, $50 patient copay",
-      "category": "Regulatory",
-      "priority": "Critical",
-      "summary": "First time Medicare covers obesity drugs without diabetes. CMS BALANCE Model extends to Medicaid (May 2026) and Medicare Part D (Jan 2027). Pilot delayed to April 2026.",
-      "sourceName": "White House, CMS",
-      "onseraImplications": "Medicare/Medicaid expansion creates new B2G opportunity (2026-2027). Companies positioned for government contracts may capture significant volume.",
-      "confidence": "Confirmed"
-    },
-    {
-      "id": "digest-2026-01-13-hims-novo",
-      "date": "2025-06-15",
-      "competitor": "Hims & Hers",
-      "headline": "Novo Nordisk terminated Hims partnership citing 'illegal mass compounding'",
-      "category": "Competitor",
-      "priority": "High",
-      "summary": "Novo accused Hims of 'illegal mass compounding' and 'deceptive marketing'. FTC scrutiny ongoing. Hims reduced compounded prices 20% Q4. Weight loss segment still $725M revenue 2025.",
-      "sourceName": "Novo Nordisk, FTC, Company filings",
-      "onseraImplications": "FDA compounding crackdown eliminates low-cost competitor supply. D2C models dependent on compounding face existential pressure. Differentiate on care delivery.",
-      "confidence": "Confirmed"
-    },
-    {
-      "id": "digest-2026-01-13-ww-bankruptcy",
-      "date": "2025-06-24",
-      "competitor": "WeightWatchers",
-      "headline": "WeightWatchers emerged from Chapter 11 after eliminating $1.15B debt",
-      "category": "Competitor",
-      "priority": "Medium",
-      "summary": "Filed May 6, emerged June 24. New CEO Tara Comonte. Added oral Wegovy Jan 5, 2026. Amazon Pharmacy partnership Oct 2025. Clinical revenue up 35% but overall down 10.8% YoY.",
-      "sourceName": "SEC filings, GlobeNewswire",
-      "onseraImplications": "Legacy brand pivoting to GLP-1 but stability questions remain. Consumer brand may still influence individual employee demand.",
-      "confidence": "Confirmed"
-    },
-    {
-      "id": "digest-2026-01-13-virta-growth",
-      "date": "2025-11-15",
-      "competitor": "Virta Health",
-      "headline": "Virta surpasses $100M revenue with 80% YoY growth; 0% GLP-1 trend guarantee expanded",
-      "category": "Competitor",
-      "priority": "High",
-      "summary": "550+ organizations covering 12M Americans. CMS Health Tech Ecosystem Initiative selection. ~$2.1B valuation. ONLY company with peer-reviewed GLP-1 deprescribing outcomes.",
-      "sourceName": "Company announcements, Annual report",
-      "onseraImplications": "Most direct competitor on clinical credibility. Their deprescribing evidence and cost guarantees are attractive to CFOs. Emphasize Onsera's obesity-first vs diabetes expansion.",
-      "confidence": "Confirmed"
-    },
-    {
-      "id": "digest-2026-01-13-flytehealth",
-      "date": "2026-01-07",
-      "competitor": "FlyteHealth",
-      "headline": "FlyteHealth Milliman study: 86% medication adherence, $1.2M Year 1 cost avoidance",
-      "category": "Competitor",
-      "priority": "High",
-      "summary": "Third-party actuarial validation from Milliman. Connecticut multi-year extension. 4,200+ members. Featured by CMS for eCKM. Most similar positioning to Onsera.",
-      "sourceName": "PR Newswire, Milliman",
-      "onseraImplications": "FlyteHealth gaining credibility with Milliman validation. Closest competitor on positioning. Emphasize Onsera's 24-month journey, external validation, and health plan integration depth.",
-      "confidence": "Confirmed"
-    },
-    {
-      "id": "digest-2026-01-13-heuro-milliman",
-      "date": "2026-01-07",
-      "competitor": "Heuro Health",
-      "headline": "Heuro Health partners with Milliman CareFlowIQ for real-time clinical intelligence",
-      "category": "Competitor",
-      "priority": "Medium",
-      "summary": "24-month program journey similar to Onsera. Neuroplasticity-based coaching. Genomic testing for GLP-1 response. Very limited public information and market presence.",
-      "sourceName": "Company announcement",
-      "onseraImplications": "Similar journey length but limited evidence. Milliman partnership adds credibility but outcomes not yet validated publicly.",
-      "confidence": "Confirmed"
-    },
-    {
-      "id": "digest-2026-01-13-employer-survey",
-      "date": "2025-12-15",
-      "competitor": "Market",
-      "headline": "KFF Survey: 43% of large employers cover GLP-1s but 91% concerned about long-term costs",
-      "category": "Channel/Coverage",
-      "priority": "High",
-      "summary": "27% of employers report GLP-1s exceed 15% of annual claims. Response: prior authorizations, BMI thresholds, mandatory program participation. Shift from access to management.",
-      "sourceName": "KFF Employer Health Benefits Survey",
-      "onseraImplications": "Employer shift from coverage to management creates demand for Onsera's outcomes validation, cost predictability, and deprescribing pathways.",
-      "confidence": "Confirmed"
+      "whenOnseraWins": "Buyer needs focused obesity solution with deep expertise",
+      "whenTheyWin": "Buyer wants bundled multi-condition platform from established vendor"
     }
   ]
 };
 
-        // ============================================================
-        // MAIN DASHBOARD APPLICATION
-        // ============================================================
-        const { useState, useEffect, useMemo } = React;
+        // Lucide Icon aliases
+        const { 
+            Search, Filter, ChevronDown, ChevronUp, Building, FileText, 
+            Activity, Lock, Download, History, Calendar, MapPin, Users,
+            ExternalLink, Star, AlertCircle, CheckCircle, TrendingUp,
+            Globe, Briefcase
+        } = lucide;
 
-        // Initialize Lucide icons
-        const createIcon = (name) => {
-            return ({ size = 18, className = "" }) => {
-                const ref = React.useRef(null);
-                useEffect(() => {
-                    if (ref.current) {
-                        ref.current.innerHTML = '';
-                        const icon = lucide.createElement(lucide.icons[name]);
-                        if (icon) ref.current.appendChild(icon);
-                    }
-                }, []);
-                return <span ref={ref} className={className} style={{ display: 'inline-flex', width: size, height: size }} />;
-            };
-        };
-
-        const Shield = createIcon('Shield');
-        const Search = createIcon('Search');
-        const Filter = createIcon('Filter');
-        const ChevronDown = createIcon('ChevronDown');
-        const ChevronUp = createIcon('ChevronUp');
-        const AlertTriangle = createIcon('AlertTriangle');
-        const CheckCircle = createIcon('CheckCircle');
-        const Clock = createIcon('Clock');
-        const Building = createIcon('Building');
-        const Users = createIcon('Users');
-        const TrendingUp = createIcon('TrendingUp');
-        const Download = createIcon('Download');
-        const Lock = createIcon('Lock');
-        const Eye = createIcon('Eye');
-        const EyeOff = createIcon('EyeOff');
-        const FileText = createIcon('FileText');
-        const Activity = createIcon('Activity');
-        const Target = createIcon('Target');
-        const Zap = createIcon('Zap');
-        const Info = createIcon('Info');
-        const History = createIcon('History');
-
-        // Evidence Badge Component (text-based for header row)
-        const EvidenceBadge = ({ grade }) => {
-            const getStyles = () => {
-                switch(grade) {
-                    case 'GREEN': return 'bg-evidence-green-bg text-evidence-green-text border-evidence-green-border';
-                    case 'YELLOW': return 'bg-evidence-yellow-bg text-evidence-yellow-text border-evidence-yellow-border';
-                    case 'RED': return 'bg-evidence-red-bg text-evidence-red-text border-evidence-red-border';
-                    default: return 'bg-gray-100 text-gray-600 border-gray-200';
+        // Helper: Create Lucide icon component
+        const Icon = ({ name, size = 20, className = '' }) => {
+            const ref = React.useRef(null);
+            React.useEffect(() => {
+                if (ref.current) {
+                    ref.current.innerHTML = '';
+                    const icon = lucide.createElement(lucide.icons[name]);
+                    icon.setAttribute('width', size);
+                    icon.setAttribute('height', size);
+                    if (className) icon.setAttribute('class', className);
+                    ref.current.appendChild(icon);
                 }
-            };
-            return (
-                <span className={`px-2 py-0.5 text-xs font-semibold rounded border ${getStyles()}`}>
-                    {grade || 'N/A'}
-                </span>
-            );
+            }, [name, size, className]);
+            return React.createElement('span', { ref, className: 'inline-flex items-center' });
         };
 
-        // Evidence Circle Component with Tooltip
+        // Evidence Circle Component
         const EvidenceCircle = ({ grade }) => {
-            const getCircleClass = () => {
-                switch(grade) {
-                    case 'GREEN': return 'evidence-green';
-                    case 'YELLOW': return 'evidence-yellow';
-                    case 'RED': return 'evidence-red';
-                    default: return 'bg-gray-400 border-gray-300';
-                }
-            };
-
-            const getTooltip = () => {
-                switch(grade) {
-                    case 'GREEN': return 'Peer-reviewed RCT or validated longitudinal study';
-                    case 'YELLOW': return 'Observational study, actuarial report, or conference abstract';
-                    case 'RED': return 'Internal analysis, marketing materials, or unvalidated claims';
-                    default: return 'Evidence grade unknown';
-                }
-            };
-
+            const gradeClass = grade === 'GREEN' ? 'evidence-green' : 
+                              grade === 'YELLOW' ? 'evidence-yellow' : 'evidence-red';
             return (
-                <div className="tooltip-container inline-flex items-center justify-center">
-                    <span className={`evidence-circle ${getCircleClass()}`}></span>
-                    <div className="tooltip-content">{getTooltip()}</div>
+                <div className="tooltip-container inline-flex">
+                    <span className={`evidence-circle ${gradeClass}`}></span>
+                    <span className="tooltip-content">{grade || 'Unknown'} Evidence</span>
                 </div>
             );
         };
 
-        // Stability Badge Component
-        const StabilityBadge = ({ status }) => {
-            const getStatusStyles = () => {
-                switch(status) {
-                    case 'STRONG': return { bg: 'bg-evidence-green-bg', text: 'text-evidence-green-text', border: 'border-evidence-green-border' };
-                    case 'STABLE': return { bg: 'bg-blue-50', text: 'text-onsera-blue', border: 'border-blue-200' };
-                    case 'GROWING': return { bg: 'bg-teal-50', text: 'text-onsera-teal', border: 'border-teal-200' };
-                    case 'EMERGING': return { bg: 'bg-evidence-yellow-bg', text: 'text-evidence-yellow-text', border: 'border-evidence-yellow-border' };
-                    case 'CAUTION': return { bg: 'bg-evidence-red-bg', text: 'text-evidence-red-text', border: 'border-evidence-red-border' };
-                    default: return { bg: 'bg-gray-100', text: 'text-gray-600', border: 'border-gray-200' };
-                }
+        // Stability Badge Component (Icon-based)
+        const StabilityBadge = ({ stability }) => {
+            const config = {
+                'STRONG': { icon: 'Shield', tooltip: 'STRONG — Established, well-funded, market leader' },
+                'STABLE': { icon: 'CheckCircle', tooltip: 'STABLE — Proven but watch market factors' },
+                'GROWING': { icon: 'TrendingUp', tooltip: 'GROWING — Expanding with momentum' },
+                'EMERGING': { icon: 'Sparkles', tooltip: 'EMERGING — Early stage, limited track record' },
+                'CAUTION': { icon: 'AlertTriangle', tooltip: 'CAUTION — Financial/operational concerns' }
             };
-
-            const styles = getStatusStyles();
+            const { icon, tooltip } = config[stability] || config['EMERGING'];
             return (
-                <span className={`px-2 py-0.5 text-xs font-medium rounded border ${styles.bg} ${styles.text} ${styles.border}`}>
-                    {status}
-                </span>
+                <div className="tooltip-container inline-flex items-center">
+                    <Icon name={icon} size={16} className="text-onsera-dark" />
+                    <span className="tooltip-content">{tooltip}</span>
+                </div>
             );
         };
 
-        // Segment Badge (neutral gray as requested)
+        // Segment Badge Component
         const SegmentBadge = ({ segment }) => {
+            const colors = {
+                'PBM-Aligned': 'bg-purple-100 text-purple-700 border-purple-200',
+                'Coaching-First': 'bg-blue-100 text-blue-700 border-blue-200',
+                'Clinical-First': 'bg-green-100 text-green-700 border-green-200',
+                'Hybrid': 'bg-amber-100 text-amber-700 border-amber-200'
+            };
             return (
-                <span className="px-2 py-0.5 text-xs font-medium rounded bg-gray-100 text-gray-700 border border-gray-200">
+                <span className={`px-2 py-0.5 text-xs font-medium rounded border ${colors[segment] || 'bg-gray-100 text-gray-700'}`}>
                     {segment}
                 </span>
             );
         };
 
-        // Priority Badge
+        // Priority Badge Component
         const PriorityBadge = ({ priority }) => {
-            const getStyles = () => {
-                switch(priority) {
-                    case 'Critical': return 'bg-evidence-red-bg text-evidence-red-text border-evidence-red-border';
-                    case 'High': return 'bg-evidence-yellow-bg text-evidence-yellow-text border-evidence-yellow-border';
-                    case 'Medium': return 'bg-blue-50 text-onsera-blue border-blue-200';
-                    case 'Low': return 'bg-gray-100 text-gray-600 border-gray-200';
-                    default: return 'bg-gray-100 text-gray-600 border-gray-200';
-                }
+            const colors = {
+                'Critical': 'bg-red-100 text-red-700 border-red-200',
+                'High': 'bg-orange-100 text-orange-700 border-orange-200',
+                'Medium': 'bg-blue-100 text-blue-700 border-blue-200',
+                'Low': 'bg-gray-100 text-gray-600 border-gray-200'
             };
             return (
-                <span className={`px-2 py-0.5 text-xs font-medium rounded border ${getStyles()}`}>
+                <span className={`px-2 py-0.5 text-xs font-medium rounded border ${colors[priority] || 'bg-gray-100'}`}>
                     {priority}
                 </span>
             );
         };
 
-        // Category Badge
+        // Category Badge Component
         const CategoryBadge = ({ category }) => {
-            const getStyles = () => {
-                switch(category) {
-                    case 'Drug/Science': return 'bg-purple-50 text-purple-700 border-purple-200';
-                    case 'Channel/Coverage': return 'bg-teal-50 text-teal-700 border-teal-200';
-                    case 'Competitor': return 'bg-orange-50 text-orange-700 border-orange-200';
-                    case 'Regulatory': return 'bg-blue-50 text-blue-700 border-blue-200';
-                    default: return 'bg-gray-100 text-gray-600 border-gray-200';
-                }
+            const colors = {
+                'Drug/Science': 'bg-onsera-light-mint text-onsera-teal border-onsera-teal',
+                'Channel/Coverage': 'bg-onsera-light-blue text-onsera-deep border-onsera-blue',
+                'Competitor': 'bg-purple-100 text-purple-700 border-purple-300',
+                'Regulatory': 'bg-amber-100 text-amber-700 border-amber-300'
             };
             return (
-                <span className={`px-2 py-0.5 text-xs font-medium rounded border ${getStyles()}`}>
+                <span className={`px-2 py-0.5 text-xs font-medium rounded border border-opacity-30 ${colors[category] || 'bg-gray-100'}`}>
                     {category}
                 </span>
             );
         };
 
-        // Pillar Dots Component (for header row - no text)
-        const PillarDots = ({ rating, colorClass = "bg-onsera-blue" }) => {
+        // Relevance Badge Component
+        const RelevanceBadge = ({ relevance }) => {
+            const classes = {
+                'Critical': 'relevance-critical',
+                'High': 'relevance-high',
+                'Medium': 'relevance-medium',
+                'Low': 'relevance-low'
+            };
+            return (
+                <span className={`px-2 py-0.5 text-xs font-semibold rounded border ${classes[relevance] || 'relevance-medium'}`}>
+                    {relevance}
+                </span>
+            );
+        };
+
+        // Pillar Rating Component
+        const PillarRating = ({ label, rating, notes }) => {
             const dots = [];
             for (let i = 1; i <= 5; i++) {
                 dots.push(
                     <span 
                         key={i} 
-                        className={`inline-block w-2.5 h-2.5 rounded-full ${i <= rating ? colorClass : 'bg-gray-300'}`}
-                    ></span>
+                        className={`w-3 h-3 rounded-full ${i <= rating ? 'bg-onsera-blue' : 'bg-gray-200'}`}
+                    />
                 );
             }
-            return <div className="flex items-center gap-1">{dots}</div>;
-        };
-
-        // Pillar Rating Component with Tooltip (for expanded view)
-        const PillarRating = ({ label, rating, notes }) => {
-            const getTooltip = () => {
-                switch(label) {
-                    case 'SOURCE': return 'GLP-1 access & cost influence (5=formulary control, 1=no prescribing)';
-                    case 'INTELLIGENCE': return 'Evidence quality (5=peer-reviewed RCTs, 1=marketing only)';
-                    case 'ENGAGE': return 'Member experience (5=70%+ engagement proven, 1=minimal UX)';
-                    default: return '';
-                }
-            };
-
             return (
-                <div className="space-y-1">
-                    <div className="flex items-center justify-between">
-                        <div className="tooltip-container">
-                            <span className="text-xs font-medium text-onsera-dark flex items-center gap-1">
-                                {label}
-                                <Info size={12} className="text-gray-400" />
-                            </span>
-                            <div className="tooltip-content" style={{ whiteSpace: 'normal', width: '200px' }}>{getTooltip()}</div>
-                        </div>
-                        <span className="text-xs font-semibold text-onsera-deep">{rating}/5</span>
+                <div className="tooltip-container">
+                    <div className="text-center">
+                        <p className="text-xs font-semibold text-gray-600 mb-1">{label}</p>
+                        <div className="flex justify-center gap-1">{dots}</div>
                     </div>
-                    <div className="pillar-bar">
-                        <div className="pillar-fill" style={{ width: `${(rating / 5) * 100}%` }}></div>
-                    </div>
-                    <p className="text-xs text-gray-500 mt-1">{notes}</p>
+                    {notes && <span className="tooltip-content max-w-xs whitespace-normal">{notes}</span>}
                 </div>
             );
         };
@@ -1339,64 +1332,43 @@
         const CompetitorCard = ({ competitor, isExpanded, onToggle }) => {
             return (
                 <div className="bg-white rounded-lg border border-gray-200 overflow-hidden card-expand">
-                    {/* Header Row */}
                     <div 
                         className="p-4 cursor-pointer hover:bg-gray-50 transition-colors"
                         onClick={onToggle}
                     >
                         <div className="grid grid-cols-12 gap-4 items-center">
-                            {/* Segment */}
                             <div className="col-span-1">
                                 <SegmentBadge segment={competitor.segment} />
                             </div>
-                            
-                            {/* Competitor Name */}
                             <div className="col-span-4">
                                 <h3 className="font-heading font-bold text-onsera-black">{competitor.name}</h3>
+                                <p className="text-sm text-gray-500">{competitor.businessModel} | {competitor.primaryChannel}</p>
                             </div>
-                            
-                            {/* Stability */}
                             <div className="col-span-1">
-                                <StabilityBadge status={competitor.stabilityAssessment} />
+                                <StabilityBadge stability={competitor.stability} />
                             </div>
-                            
-                            {/* Evidence */}
                             <div className="col-span-1">
-                                <EvidenceBadge grade={competitor.outcomes?.evidenceGrade} />
+                                <EvidenceCircle grade={competitor.outcomes?.evidenceGrade} />
                             </div>
-                            
-                            {/* Intel (Intelligence) */}
                             <div className="col-span-1">
-                                <PillarDots rating={competitor.pillars?.intelligence?.rating || 0} colorClass="bg-indigo-500" />
+                                <PillarRating label="" rating={competitor.pillars?.intelligence?.rating || 0} notes="" />
                             </div>
-                            
-                            {/* Engage */}
                             <div className="col-span-1">
-                                <PillarDots rating={competitor.pillars?.engage?.rating || 0} colorClass="bg-purple-500" />
+                                <PillarRating label="" rating={competitor.pillars?.engage?.rating || 0} notes="" />
                             </div>
-                            
-                            {/* Source */}
                             <div className="col-span-2">
-                                <PillarDots rating={competitor.pillars?.source?.rating || 0} colorClass="bg-teal-500" />
+                                <PillarRating label="" rating={competitor.pillars?.source?.rating || 0} notes="" />
                             </div>
-                            
-                            {/* Expand Toggle */}
-                            <div className="col-span-1 flex justify-end">
-                                {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                            <div className="col-span-1 text-right">
+                                {isExpanded ? <Icon name="ChevronUp" size={20} /> : <Icon name="ChevronDown" size={20} />}
                             </div>
                         </div>
                     </div>
                     
-                    {/* Expanded Content */}
                     {isExpanded && (
                         <div className="border-t border-gray-200 p-4 bg-gray-50">
-                            {/* Core Product */}
-                            <div className="mb-4">
-                                <h4 className="font-heading font-semibold text-sm text-onsera-deep mb-1">Core Product</h4>
-                                <p className="text-sm text-onsera-dark">{competitor.coreProduct}</p>
-                            </div>
+                            <p className="text-sm text-onsera-dark mb-4">{competitor.coreProduct}</p>
                             
-                            {/* Three Pillars Detail */}
                             <div className="grid grid-cols-3 gap-4 mb-4">
                                 <PillarRating 
                                     label="SOURCE" 
@@ -1415,7 +1387,6 @@
                                 />
                             </div>
                             
-                            {/* Pricing & Outcomes */}
                             <div className="grid grid-cols-2 gap-4 mb-4">
                                 <div className="bg-white rounded-lg p-3 border border-gray-200">
                                     <h4 className="font-heading font-semibold text-sm text-onsera-deep mb-2">Pricing</h4>
@@ -1430,7 +1401,7 @@
                                     </h4>
                                     <ul className="text-sm text-onsera-dark space-y-1">
                                         {competitor.outcomes?.metricsReported?.slice(0, 3).map((m, i) => (
-                                            <li key={i}>• {m}</li>
+                                            <li key={i}>{m}</li>
                                         ))}
                                     </ul>
                                     {competitor.outcomes?.methodologicalFlags?.length > 0 && (
@@ -1442,7 +1413,6 @@
                                 </div>
                             </div>
                             
-                            {/* They Say / We Say */}
                             {competitor.theySayWeSay?.length > 0 && (
                                 <div className="mb-4">
                                     <h4 className="font-heading font-semibold text-sm text-onsera-deep mb-2">They Say / We Say</h4>
@@ -1457,7 +1427,6 @@
                                 </div>
                             )}
                             
-                            {/* Win/Loss Scenarios */}
                             <div className="grid grid-cols-2 gap-4">
                                 <div className="bg-evidence-green-bg rounded-lg p-3 border border-evidence-green-border">
                                     <h4 className="font-heading font-semibold text-sm text-evidence-green-text mb-1">When Onsera Wins</h4>
@@ -1474,9 +1443,9 @@
             );
         };
 
-        // Digest Entry Card
+        // Digest Entry Card with Clickable Source Link
         const DigestCard = ({ entry }) => {
-            const [isExpanded, setIsExpanded] = useState(false);
+            const [isExpanded, setIsExpanded] = React.useState(false);
             
             return (
                 <div className="bg-white rounded-lg border border-gray-200 overflow-hidden card-expand">
@@ -1495,7 +1464,7 @@
                                 <p className="text-sm text-gray-600">{entry.competitor}</p>
                             </div>
                             <div className="flex-shrink-0">
-                                {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                                {isExpanded ? <Icon name="ChevronUp" size={20} /> : <Icon name="ChevronDown" size={20} />}
                             </div>
                         </div>
                     </div>
@@ -1512,12 +1481,155 @@
                                     <p className="text-sm text-onsera-dark">{entry.onseraImplications}</p>
                                 </div>
                                 <div className="flex items-center justify-between text-xs text-gray-500">
-                                    <span>Source: {entry.sourceName}</span>
+                                    <span className="flex items-center gap-1">
+                                        Source: 
+                                        {entry.sourceUrl ? (
+                                            <a 
+                                                href={entry.sourceUrl} 
+                                                target="_blank" 
+                                                rel="noopener noreferrer"
+                                                className="text-onsera-blue hover:text-onsera-deep source-link inline-flex items-center gap-1"
+                                                onClick={(e) => e.stopPropagation()}
+                                            >
+                                                {entry.sourceName}
+                                                <Icon name="ExternalLink" size={12} />
+                                            </a>
+                                        ) : (
+                                            <span>{entry.sourceName}</span>
+                                        )}
+                                    </span>
                                     <span className="px-2 py-0.5 bg-gray-100 rounded">{entry.confidence}</span>
                                 </div>
                             </div>
                         </div>
                     )}
+                </div>
+            );
+        };
+
+        // Conference Card Component
+        const ConferenceCard = ({ conference, isExpanded, onToggle }) => {
+            return (
+                <div className="bg-white rounded-lg border border-gray-200 overflow-hidden card-expand">
+                    <div 
+                        className="p-4 cursor-pointer hover:bg-gray-50 transition-colors"
+                        onClick={onToggle}
+                    >
+                        <div className="flex items-start justify-between gap-4">
+                            <div className="flex-1">
+                                <div className="flex items-center gap-2 mb-2">
+                                    <span className="px-2 py-0.5 text-xs font-medium rounded border bg-onsera-light-blue text-onsera-deep border-onsera-blue border-opacity-30">
+                                        {conference.type}
+                                    </span>
+                                    <span className="text-xs text-gray-500">{conference.dates}</span>
+                                </div>
+                                <h3 className="font-heading font-bold text-onsera-black mb-1">{conference.name}</h3>
+                                <div className="flex items-center gap-4 text-sm text-gray-600">
+                                    <span className="flex items-center gap-1">
+                                        <Icon name="MapPin" size={14} />
+                                        {conference.location}
+                                    </span>
+                                    <span className="flex items-center gap-1">
+                                        <Icon name="Users" size={14} />
+                                        {conference.attendees} attendees
+                                    </span>
+                                    <span className="flex items-center gap-1">
+                                        <Icon name="Building" size={14} />
+                                        {conference.companies} companies
+                                    </span>
+                                </div>
+                            </div>
+                            <div className="flex-shrink-0">
+                                {isExpanded ? <Icon name="ChevronUp" size={20} /> : <Icon name="ChevronDown" size={20} />}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    {isExpanded && (
+                        <div className="border-t border-gray-200 p-4 bg-gray-50">
+                            {/* Key Takeaways */}
+                            <div className="mb-6">
+                                <h4 className="font-heading font-bold text-sm text-onsera-deep mb-3 flex items-center gap-2">
+                                    <Icon name="Star" size={16} />
+                                    Key Takeaways
+                                </h4>
+                                <div className="space-y-3">
+                                    {conference.keyTakeaways?.map((takeaway, i) => (
+                                        <div key={i} className="bg-white rounded-lg p-3 border border-gray-200">
+                                            <div className="flex items-start justify-between gap-3 mb-2">
+                                                <h5 className="font-semibold text-onsera-black">{takeaway.theme}</h5>
+                                                <RelevanceBadge relevance={takeaway.onseraRelevance} />
+                                            </div>
+                                            <p className="text-sm text-onsera-dark mb-2">{takeaway.summary}</p>
+                                            <p className="text-xs text-gray-500">Source: {takeaway.source}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                            
+                            {/* Competitor Presences */}
+                            {conference.competitorPresences?.length > 0 && (
+                                <div className="mb-6">
+                                    <h4 className="font-heading font-bold text-sm text-onsera-deep mb-3 flex items-center gap-2">
+                                        <Icon name="Briefcase" size={16} />
+                                        Competitor Presences
+                                    </h4>
+                                    <div className="grid grid-cols-2 gap-2">
+                                        {conference.competitorPresences.map((cp, i) => (
+                                            <div key={i} className="bg-white rounded-lg p-3 border border-gray-200">
+                                                <div className="flex items-center gap-2 mb-1">
+                                                    {cp.presented && (
+                                                        <span className="w-2 h-2 rounded-full bg-onsera-teal"></span>
+                                                    )}
+                                                    <span className="font-semibold text-sm text-onsera-black">{cp.name}</span>
+                                                </div>
+                                                <p className="text-xs text-gray-600">{cp.notes}</p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+                            
+                            {/* Source Links */}
+                            {conference.sourceUrls?.length > 0 && (
+                                <div>
+                                    <h4 className="font-heading font-bold text-sm text-onsera-deep mb-2 flex items-center gap-2">
+                                        <Icon name="Globe" size={16} />
+                                        Sources
+                                    </h4>
+                                    <div className="flex flex-wrap gap-2">
+                                        {conference.sourceUrls.map((url, i) => (
+                                            <a 
+                                                key={i}
+                                                href={url} 
+                                                target="_blank" 
+                                                rel="noopener noreferrer"
+                                                className="text-xs text-onsera-blue hover:text-onsera-deep source-link inline-flex items-center gap-1 bg-white px-2 py-1 rounded border border-gray-200"
+                                                onClick={(e) => e.stopPropagation()}
+                                            >
+                                                {new URL(url).hostname.replace('www.', '')}
+                                                <Icon name="ExternalLink" size={10} />
+                                            </a>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    )}
+                </div>
+            );
+        };
+
+        // Upcoming Conference Card
+        const UpcomingConferenceCard = ({ conference }) => {
+            return (
+                <div className="bg-white rounded-lg p-4 border border-gray-200 border-l-4 border-l-onsera-blue">
+                    <div className="flex items-center gap-2 mb-1">
+                        <Icon name="Calendar" size={14} className="text-onsera-blue" />
+                        <span className="text-sm font-semibold text-onsera-black">{conference.name}</span>
+                    </div>
+                    <p className="text-xs text-gray-600 mb-1">{conference.dates} | {conference.location}</p>
+                    <p className="text-xs text-onsera-teal">{conference.relevance}</p>
                 </div>
             );
         };
@@ -1548,7 +1660,7 @@
                                             {change.field && <span className="text-gray-500">[{change.field}] </span>}
                                             <span>{change.note}</span>
                                             {change.from && change.to && (
-                                                <span className="text-gray-400"> ({change.from} → {change.to})</span>
+                                                <span className="text-gray-400"> ({change.from} -> {change.to})</span>
                                             )}
                                         </div>
                                     </div>
@@ -1565,7 +1677,6 @@
             return (
                 <div className="bg-white rounded-lg border border-gray-200 p-4 mb-4">
                     <div className="grid grid-cols-2 gap-8">
-                        {/* Evidence Grades */}
                         <div>
                             <h4 className="font-heading font-bold text-sm text-onsera-deep mb-3">EVIDENCE GRADES</h4>
                             <div className="space-y-2">
@@ -1584,29 +1695,28 @@
                             </div>
                         </div>
                         
-                        {/* Stability Assessment */}
                         <div>
                             <h4 className="font-heading font-bold text-sm text-onsera-deep mb-3">STABILITY ASSESSMENT</h4>
                             <div className="space-y-2">
                                 <div className="flex items-center gap-3">
-                                    <span className="stability-square stability-strong"></span>
-                                    <span className="text-sm"><strong>STRONG</strong> — Established, well-funded, market leader</span>
+                                    <Icon name="Shield" size={16} className="text-onsera-dark" />
+                                    <span className="text-sm"><strong>STRONG</strong> - Established, well-funded, market leader</span>
                                 </div>
                                 <div className="flex items-center gap-3">
-                                    <span className="stability-square stability-stable"></span>
-                                    <span className="text-sm"><strong>STABLE</strong> — Proven but watch market factors</span>
+                                    <Icon name="CheckCircle" size={16} className="text-onsera-dark" />
+                                    <span className="text-sm"><strong>STABLE</strong> - Proven but watch market factors</span>
                                 </div>
                                 <div className="flex items-center gap-3">
-                                    <span className="stability-square stability-growing"></span>
-                                    <span className="text-sm"><strong>GROWING</strong> — Expanding with momentum</span>
+                                    <Icon name="TrendingUp" size={16} className="text-onsera-dark" />
+                                    <span className="text-sm"><strong>GROWING</strong> - Expanding with momentum</span>
                                 </div>
                                 <div className="flex items-center gap-3">
-                                    <span className="stability-square stability-emerging"></span>
-                                    <span className="text-sm"><strong>EMERGING</strong> — New entrant, unproven</span>
+                                    <Icon name="Sparkles" size={16} className="text-onsera-dark" />
+                                    <span className="text-sm"><strong>EMERGING</strong> - Early stage, limited track record</span>
                                 </div>
                                 <div className="flex items-center gap-3">
-                                    <span className="stability-square stability-caution"></span>
-                                    <span className="text-sm"><strong>CAUTION</strong> — Risk factors present</span>
+                                    <Icon name="AlertTriangle" size={16} className="text-onsera-dark" />
+                                    <span className="text-sm"><strong>CAUTION</strong> - Financial/operational concerns</span>
                                 </div>
                             </div>
                         </div>
@@ -1617,32 +1727,32 @@
 
         // Main App Component
         const App = () => {
-            const [isAuthenticated, setIsAuthenticated] = useState(false);
-            const [password, setPassword] = useState('');
-            const [showPassword, setShowPassword] = useState(false);
-            const [passwordError, setPasswordError] = useState(false);
-            
-            const [activeTab, setActiveTab] = useState('digest');
-            const [searchTerm, setSearchTerm] = useState('');
-            const [segmentFilter, setSegmentFilter] = useState('all');
-            const [evidenceFilter, setEvidenceFilter] = useState('all');
-            const [categoryFilter, setCategoryFilter] = useState('all');
-            const [priorityFilter, setPriorityFilter] = useState('all');
-            const [expandedCompetitor, setExpandedCompetitor] = useState(null);
-            const [isAdminMode, setIsAdminMode] = useState(false);
+            const [isAuthenticated, setIsAuthenticated] = React.useState(false);
+            const [password, setPassword] = React.useState('');
+            const [passwordError, setPasswordError] = React.useState(false);
+            const [activeTab, setActiveTab] = React.useState('digest');
+            const [searchTerm, setSearchTerm] = React.useState('');
+            const [categoryFilter, setCategoryFilter] = React.useState('all');
+            const [priorityFilter, setPriorityFilter] = React.useState('all');
+            const [segmentFilter, setSegmentFilter] = React.useState('all');
+            const [evidenceFilter, setEvidenceFilter] = React.useState('all');
+            const [expandedCompetitor, setExpandedCompetitor] = React.useState(null);
+            const [expandedConference, setExpandedConference] = React.useState(null);
+            const [isAdminMode, setIsAdminMode] = React.useState(false);
             
             const data = EMBEDDED_DATA;
+            const CORRECT_PASSWORD = 'OnseraCI2026';
             
             // Check session storage on mount
-            useEffect(() => {
-                const authStatus = sessionStorage.getItem('onsera-ci-auth');
-                if (authStatus === 'authenticated') {
+            React.useEffect(() => {
+                const storedAuth = sessionStorage.getItem('onsera-ci-auth');
+                if (storedAuth === 'authenticated') {
                     setIsAuthenticated(true);
                 }
             }, []);
             
             const handleLogin = () => {
-                if (password === 'OnseraCI2026') {
+                if (password === CORRECT_PASSWORD) {
                     setIsAuthenticated(true);
                     sessionStorage.setItem('onsera-ci-auth', 'authenticated');
                     setPasswordError(false);
@@ -1654,49 +1764,49 @@
             const handleLogout = () => {
                 setIsAuthenticated(false);
                 sessionStorage.removeItem('onsera-ci-auth');
+                setPassword('');
             };
             
-            // Filter competitors
-            const filteredCompetitors = useMemo(() => {
-                return data.competitors.filter(c => {
-                    const matchesSearch = searchTerm === '' || 
-                        c.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                        c.coreProduct?.toLowerCase().includes(searchTerm.toLowerCase());
-                    const matchesSegment = segmentFilter === 'all' || c.segment === segmentFilter;
-                    const matchesEvidence = evidenceFilter === 'all' || c.outcomes?.evidenceGrade === evidenceFilter;
-                    return matchesSearch && matchesSegment && matchesEvidence;
-                });
-            }, [data.competitors, searchTerm, segmentFilter, evidenceFilter]);
-            
             // Filter digest entries
-            const filteredDigest = useMemo(() => {
-                return data.digest
-                    .filter(d => {
-                        const matchesSearch = searchTerm === '' ||
-                            d.headline.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                            d.competitor.toLowerCase().includes(searchTerm.toLowerCase());
-                        const matchesCategory = categoryFilter === 'all' || d.category === categoryFilter;
-                        const matchesPriority = priorityFilter === 'all' || d.priority === priorityFilter;
-                        return matchesSearch && matchesCategory && matchesPriority;
-                    })
-                    .sort((a, b) => new Date(b.date) - new Date(a.date));
-            }, [data.digest, searchTerm, categoryFilter, priorityFilter]);
+            const filteredDigest = data.digest.filter(entry => {
+                const matchesSearch = searchTerm === '' || 
+                    entry.headline.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    entry.summary.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    entry.competitor.toLowerCase().includes(searchTerm.toLowerCase());
+                // Handle "Market" as special case - filters by competitor, not category
+                const matchesCategory = categoryFilter === 'all' || 
+                    (categoryFilter === 'Market' ? entry.competitor === 'Market' : entry.category === categoryFilter);
+                const matchesPriority = priorityFilter === 'all' || entry.priority === priorityFilter;
+                return matchesSearch && matchesCategory && matchesPriority;
+            });
             
-            // Export JSON for admin mode
+            // Filter competitors
+            const filteredCompetitors = data.competitors.filter(comp => {
+                const matchesSearch = searchTerm === '' || 
+                    comp.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    comp.coreProduct?.toLowerCase().includes(searchTerm.toLowerCase());
+                const matchesSegment = segmentFilter === 'all' || comp.segment === segmentFilter;
+                const matchesEvidence = evidenceFilter === 'all' || comp.outcomes?.evidenceGrade === evidenceFilter;
+                return matchesSearch && matchesSegment && matchesEvidence;
+            });
+            
+            // Export JSON for admin
             const exportJSON = () => {
-                const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+                const dataStr = JSON.stringify(data, null, 2);
+                const blob = new Blob([dataStr], { type: 'application/json' });
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = `onsera-ci-data-v${data.metadata.version}-${new Date().toISOString().split('T')[0]}.json`;
+                a.download = `ci-data-v${data.metadata.version}-export.json`;
                 a.click();
+                URL.revokeObjectURL(url);
             };
             
             // Login Screen
             if (!isAuthenticated) {
                 return (
-                    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-onsera-deep to-onsera-blue p-4">
-                        <div className="bg-white rounded-2xl shadow-xl p-10 w-full max-w-md">
+                    <div className="min-h-screen bg-gradient-to-br from-onsera-deep to-onsera-blue flex items-center justify-center p-4">
+                        <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md">
                             <div className="text-center mb-6">
                                 <h1 className="font-heading text-3xl font-bold text-onsera-black mb-2">Onsera Health</h1>
                                 <p className="text-gray-600 text-lg">Competitive Intelligence Dashboard</p>
@@ -1744,7 +1854,7 @@
                                 </div>
                                 <div className="flex items-center gap-4">
                                     <div className="text-right text-sm">
-                                        <p className="text-blue-200">v4.6.0 | Data v{data.metadata.version}</p>
+                                        <p className="text-blue-200">v4.7.0 | Data v{data.metadata.version}</p>
                                         <p className="text-blue-200">Updated: {data.metadata.lastUpdated}</p>
                                     </div>
                                     {isAdminMode && (
@@ -1752,24 +1862,16 @@
                                             onClick={exportJSON}
                                             className="flex items-center gap-2 px-3 py-2 bg-white bg-opacity-20 rounded-lg hover:bg-opacity-30 transition-colors"
                                         >
-                                            <Download size={16} />
+                                            <Icon name="Download" size={16} />
                                             <span className="text-sm">Export</span>
                                         </button>
                                     )}
-                                    <button
-                                        onClick={() => setIsAdminMode(!isAdminMode)}
-                                        className={`px-3 py-2 rounded-lg transition-colors ${
-                                            isAdminMode ? 'bg-onsera-mint text-onsera-deep' : 'bg-white bg-opacity-20 hover:bg-opacity-30'
-                                        }`}
-                                    >
-                                        <span className="text-sm">{isAdminMode ? 'Admin Mode' : 'View Mode'}</span>
-                                    </button>
                                     <button
                                         onClick={handleLogout}
                                         className="p-2 bg-white bg-opacity-20 rounded-lg hover:bg-opacity-30 transition-colors"
                                         title="Logout"
                                     >
-                                        <Lock size={16} />
+                                        <Icon name="Lock" size={16} />
                                     </button>
                                 </div>
                             </div>
@@ -1777,15 +1879,19 @@
                             {/* Stats Bar */}
                             <div className="flex items-center gap-6 mt-4 pt-4 border-t border-white border-opacity-20">
                                 <div className="flex items-center gap-2">
-                                    <Building size={16} className="text-blue-200" />
+                                    <Icon name="Building" size={16} className="text-blue-200" />
                                     <span className="text-sm"><strong>{data.competitors.length}</strong> Competitors</span>
                                 </div>
                                 <div className="flex items-center gap-2">
-                                    <FileText size={16} className="text-blue-200" />
+                                    <Icon name="FileText" size={16} className="text-blue-200" />
                                     <span className="text-sm"><strong>{data.digest.length}</strong> Digest Entries</span>
                                 </div>
                                 <div className="flex items-center gap-2">
-                                    <Activity size={16} className="text-blue-200" />
+                                    <Icon name="Calendar" size={16} className="text-blue-200" />
+                                    <span className="text-sm"><strong>{data.conferences.length}</strong> Conferences</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <Icon name="Activity" size={16} className="text-blue-200" />
                                     <span className="text-sm"><strong>4</strong> Segments</span>
                                 </div>
                             </div>
@@ -1797,9 +1903,10 @@
                         <div className="max-w-7xl mx-auto px-4">
                             <nav className="flex gap-1">
                                 {[
-                                    { id: 'digest', label: 'Weekly Digest', icon: FileText },
-                                    { id: 'competitors', label: 'Competitor Repository', icon: Building },
-                                    { id: 'changelog', label: 'Changelog', icon: History }
+                                    { id: 'digest', label: 'Weekly Digest', icon: 'FileText' },
+                                    { id: 'competitors', label: 'Competitor Repository', icon: 'Building' },
+                                    { id: 'conferences', label: 'Conferences', icon: 'Calendar' },
+                                    { id: 'changelog', label: 'Changelog', icon: 'History' }
                                 ].map(tab => (
                                     <button
                                         key={tab.id}
@@ -1810,7 +1917,7 @@
                                                 : 'border-transparent text-gray-600 hover:text-onsera-blue'
                                         }`}
                                     >
-                                        <tab.icon size={16} />
+                                        <Icon name={tab.icon} size={16} />
                                         {tab.label}
                                     </button>
                                 ))}
@@ -1828,10 +1935,10 @@
                                     <div className="flex flex-wrap items-center gap-4">
                                         <div className="flex-1 min-w-[200px]">
                                             <div className="relative">
-                                                <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                                                <Icon name="Search" size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
                                                 <input
                                                     type="text"
-                                                    placeholder="Search digest entries..."
+                                                    placeholder="Search digest..."
                                                     value={searchTerm}
                                                     onChange={(e) => setSearchTerm(e.target.value)}
                                                     className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-onsera-blue focus:border-transparent"
@@ -1848,6 +1955,7 @@
                                             <option value="Channel/Coverage">Channel/Coverage</option>
                                             <option value="Competitor">Competitor</option>
                                             <option value="Regulatory">Regulatory</option>
+                                            <option value="Market">Market (Industry-wide)</option>
                                         </select>
                                         <select
                                             value={priorityFilter}
@@ -1863,7 +1971,12 @@
                                     </div>
                                 </div>
                                 
-                                {/* Digest Entries */}
+                                {/* Digest Count */}
+                                <p className="text-sm text-gray-500 mb-3">
+                                    Showing {filteredDigest.length} of {data.digest.length} entries
+                                </p>
+                                
+                                {/* Digest Cards */}
                                 <div className="space-y-3">
                                     {filteredDigest.map(entry => (
                                         <DigestCard key={entry.id} entry={entry} />
@@ -1889,7 +2002,7 @@
                                     <div className="flex flex-wrap items-center gap-4">
                                         <div className="flex-1 min-w-[200px]">
                                             <div className="relative">
-                                                <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                                                <Icon name="Search" size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
                                                 <input
                                                     type="text"
                                                     placeholder="Search competitors..."
@@ -1964,6 +2077,57 @@
                             </div>
                         )}
                         
+                        {/* Conferences Tab */}
+                        {activeTab === 'conferences' && (
+                            <div>
+                                {/* Market Signals Summary */}
+                                <div className="bg-gradient-to-r from-onsera-deep to-onsera-blue rounded-lg p-6 mb-6 text-white">
+                                    <h2 className="font-heading font-bold text-xl mb-3">Market Signals | January 2026</h2>
+                                    <p className="text-blue-100 mb-4">{data.marketSignals?.summary}</p>
+                                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                                        {data.marketSignals?.keyThemes?.map((theme, i) => (
+                                            <div key={i} className="bg-white bg-opacity-10 rounded-lg p-2 text-sm">
+                                                {theme}
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                                
+                                {/* Past Conferences */}
+                                <div className="mb-8">
+                                    <h3 className="font-heading font-bold text-lg text-onsera-deep mb-4 flex items-center gap-2">
+                                        <Icon name="Calendar" size={20} />
+                                        Recent Conferences
+                                    </h3>
+                                    <div className="space-y-3">
+                                        {data.conferences?.map(conf => (
+                                            <ConferenceCard
+                                                key={conf.id}
+                                                conference={conf}
+                                                isExpanded={expandedConference === conf.id}
+                                                onToggle={() => setExpandedConference(
+                                                    expandedConference === conf.id ? null : conf.id
+                                                )}
+                                            />
+                                        ))}
+                                    </div>
+                                </div>
+                                
+                                {/* Upcoming Conferences */}
+                                <div>
+                                    <h3 className="font-heading font-bold text-lg text-onsera-deep mb-4 flex items-center gap-2">
+                                        <Icon name="TrendingUp" size={20} />
+                                        Upcoming Conferences
+                                    </h3>
+                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                        {data.upcomingConferences?.map((conf, i) => (
+                                            <UpcomingConferenceCard key={i} conference={conf} />
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                        
                         {/* Changelog Tab */}
                         {activeTab === 'changelog' && (
                             <div>
@@ -1984,7 +2148,7 @@
                         <div className="max-w-7xl mx-auto px-4 py-4">
                             <div className="flex items-center justify-between text-sm text-gray-500">
                                 <p>© 2026 Onsera Health | Confidential - Internal Use Only</p>
-                                <p>Dashboard v4.6.0 | Data v{data.metadata.version} | {data.metadata.lastUpdated}</p>
+                                <p>Dashboard v4.8.0 | Data v{data.metadata.version} | {data.metadata.lastUpdated}</p>
                             </div>
                         </div>
                     </footer>
